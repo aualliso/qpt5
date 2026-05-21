@@ -1,0 +1,34 @@
+{# _includes/partials/header.njk - Corrected for pathPrefix/url Filter #}
+<header class="site-main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="{{ '/' | url }}">
+                {# This image path was already correct #}
+                <img src="{{ '/img/qpt-seal-head-white.png' | url }}" alt="Trail Arrow" class="logo-arrow">
+                <span class="logo-text">Quanah Parker Trail</span>
+            </a>
+        </div>
+        {# --- Hamburger Button --- #}
+        <button class="menu-toggle" id="mobile-menu-toggle" aria-controls="main-navigation" aria-expanded="false">
+            <span class="sr-only">Toggle Menu</span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        {# --- End Hamburger Button --- #}
+        <nav class="main-nav" id="main-navigation">
+            <ul>
+                <li><a href="{{ '/' | url }}">Home</a></li>
+                {# --- Corrected Links for Homepage Sections --- #}
+                {# Apply url filter to the root path '/' then add the hash #}
+                {# IMPORTANT: Replace #arrows-section etc. with your ACTUAL section IDs #}
+                <li><a href="{{ '/story.html' | url }}">The Story</a></li>
+                <li><a href="{{ '/arrows.html' | url }}">The Arrows</a></li>
+                <li><a href="{{ '/' | url }}#people-section">The People</a></li>
+                {# --- Corrected Link for Contact Page --- #}
+                {# Make path root-relative and add url filter #}
+                <li><a href="{{ '/map.html' | url }}">Map</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>

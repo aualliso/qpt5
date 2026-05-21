@@ -1,0 +1,113 @@
+---
+layout: layouts/base.njk
+title: "{{ county.displayName }} - Quanah Parker Trail"
+# Make county.name available for the mini-map button in base.njk if that's how it's keyed
+# This assumes 'countyName' in base.njk's conditional is the raw name like "Dallam"
+countyName: "{{ county.name }}"
+---
+
+<header class="county-header">
+    <h1>{{ county.displayName }}</h1>
+    <p>Discover the Quanah Parker Trail arrows and rich history in {{ county.displayName }}.</p>
+    {# Table of Contents will be built dynamically #}
+    {% set arrowsInThisCounty = [] %}
+    {% for arrowPage in collections.arrows %}
+        {% if arrowPage.data.countyName == county.name %} {# county.name is "Dallam", "Briscoe", etc. #}
+            {% set arrowsInThisCounty = (arrowsInThisCounty.push(arrowPage.data.arrow), arrowsInThisCounty) %}
+        {% endif %}
+    {% endfor %}
+    <nav class="page-toc" aria-labelledby="toc-heading">
+        <h3 id="toc-heading">Table of Contents</h3>
+        <ul>
+            <li><a href="#introduction">Introduction to {{ county.displayName }}</a></li>
+            {% if arrowsInThisCounty.length > 0 %}
+            <li><a href="#arrow-detail">Arrow Details</a>
+                <ul>
+                    {% for currentArrow in arrowsInThisCounty %}
+                    <li>
+                        <a href="#{{ county.id }}{{ currentArrow.arrowNumber }}">Arrow #{{ currentArrow.arrowNumber }}: {{ currentArrow.arrowName }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+            <li><a href="#marker-map">Map of Arrows in {{ county.displayName }}</a></li>
+            <li><a href="#visitor-info">Visitor Information & Resources</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="county-content">
+    <section id="introduction">
+        <h2>Introduction to {{ county.displayName }}</h2>
+        {{ county.introduction_md | markdownify | safe }}
+    </section>
+
+    {% if arrowsInThisCounty.length > 0 %}
+    <section id="arrow-detail">
+        <h2>Arrows in {{ county.displayName }}</h2>
+        {% for currentArrow in arrowsInThisCounty %}
+        <article class="marker-entry" id="{{ county.id }}{{ currentArrow.arrowNumber }}"> {# Unique ID for anchor links #}
+            <h3>Arrow #{{ currentArrow.arrowNumber }}: {{ currentArrow.arrowName }}</h3>
+            <div class="marker-details-grid">
+                <div class="marker-info">
+                    <p><a href="{{ ('/arrows/' + currentArrow.arrowNumber + '.html') | url }}"
+                       rel="noopener noreferrer" class="button navigation-button">
+                        More Details for Arrow #{{ currentArrow.arrowNumber }}
+                    </a></p>
+                    {% if currentArrow.location %}<p><strong>Location:</strong> {{ currentArrow.location }}</p>{% endif %}
+                    {% if currentArrow.address %}<p><strong>Address:</strong> {{ currentArrow.address }}</p>{% endif %}
+                    <p><strong>Coordinates:</strong> {{ currentArrow.lat }}, {{ currentArrow.lon }}</p>
+                    <p><strong>Installed:</strong> {{ currentArrow.dateInstalled | date('MMMM d, yyyy') if currentArrow.dateInstalled else 'N/A' }}</p>
+                    {% if currentArrow.dateDedicated and currentArrow.dateDedicated | lower != 'n/a' and currentArrow.dateDedicated | lower != 'none' %}
+                        <p><strong>Dedicated:</strong> {{ currentArrow.dateDedicated | date('MMMM d, yyyy') }}</p>
+                    {% endif %}
+                    {% if currentArrow.markerText %}
+                    <h4>Marker Text:</h4>
+                    <blockquote class="marker-text">
+                        {{ currentArrow.markerText | markdownify | safe }}
+                    </blockquote>
+                    <p><a href="https://www.google.com/maps?q={{ currentArrow.lat }},{{ currentArrow.lon }}"
+                       target="_blank" rel="noopener noreferrer" class="button navigation-button">
+                        Get Directions via Google Maps
+                    </a></p>
+                    {% endif %}
+                </div>
+                <div class="marker-image">
+                    {% if currentArrow.mainImage %}
+                    <img src="{{ currentArrow.mainImage | url }}" alt="{{ currentArrow.mainImageAlt | default('Photo of ' + (currentArrow.arrowName | default('Arrow ' + currentArrow.arrowNumber))) }}" loading="lazy">
+                    {% else %}
+                    <p><em>No image available for this arrow.</em></p>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+        {% if not loop.last %}<hr class="marker-divider">{% endif %}
+        {% endfor %}
+    </section>
+    {% else %}
+    <section id="arrow-detail">
+        <h2>Arrows in {{ county.displayName }}</h2>
+        <p>There are currently no Quanah Parker Trail arrows documented for this county.</p>
+    </section>
+    {% endif %}
+
+    <section id="marker-map">
+        <h2>Map of Arrows in {{ county.displayName }}</h2>
+        <p>Explore the map below for arrow locations and the county boundary.</p>
+        <div class="osm-map" id="county-specific-map" style="height: 500px; width: 100%;"></div>
+    </section>
+
+    <section id="visitor-info">
+        <h2>Visitor Information & Resources</h2>
+        {{ county.visitor_info_md | markdownify | safe }}
+    </section>
+</div>
+<script>
+        // Define global JS variables that county-specific-map.js will use
+        var ELEVENTY_IMG_ARROW_URL = "{{ '/img/arrow-logo.png' | url }}"; // IMPORTANT: Update this path
+        var ELEVENTY_IMG_ARROW_SHADOW_URL = "{{ '/img/arrow-logo-shadow.png' | url }}"; // IMPORTANT: Update this path
+</script>
+
+{# Include the map script partial #}
+{% include "partials/county-map-script.njk" %}

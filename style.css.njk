@@ -1,0 +1,24 @@
+---
+permalink: /css/style.css
+---
+/* Main Stylesheet - Compiled by Eleventy */
+
+/* 1. Variables & Base */
+{% include "css/_variables.css" %}
+{% include "css/_reset.css" %}
+
+/* 2. Global Layout */
+{% include "css/_layout.css" %}
+
+/* 3. Components */
+{% include "css/_components.css" %}
+{% include "css/_maps.css" %}
+{% include "css/_footer.css" %}
+{% include "css/_header.css" %}
+
+/* 4. Page Specifics */
+{% include "css/_home.css" %}
+{% include "css/_pages.css" %}
+
+/* 5. Media Queries (if kept separate, otherwise keep them collocated) */
+/* It is often better to keep responsive rules inside the component files */

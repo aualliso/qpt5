@@ -1,0 +1,54 @@
+{# _includes/partials/county-map-script.njk #}
+{# Context:
+    county: current county object from _data/counties.json (e.g., { id: "dallam", name: "Dallam", ... })
+    plainstrailcounties: FeatureCollection object from _data/plainstrailcounties.json
+    collections.arrows: all arrow page data from Eleventy collections
+#}
+
+{# Actual Nunjucks logic to define variables for the JavaScript #}
+{% set currentCountySlugId = county.id %}
+{% set countyGeoJsonFeature = null %}
+{% if plainstrailcounties and plainstrailcounties.features %}
+  {% for feature in plainstrailcounties.features %}
+    {% if feature.properties and feature.properties.name and (feature.properties.name | lower == currentCountySlugId) %}
+      {% set countyGeoJsonFeature = feature %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% set arrowsForMap = [] %}
+{% for arrowPage in collections.arrows %}
+  {% if arrowPage.data.countyName == county.name %}
+    {% set arrowObj = arrowPage.data.arrow %} {# Full arrow data from eleventyComputed/arrows.json #}
+    {# For jsArrow: Ensure pageUrl is processed with the |url filter #}
+    {% set jsArrow = {
+        lat: arrowObj.lat,
+        lon: arrowObj.lon,
+        arrowNumber: arrowObj.arrowNumber,
+        name: arrowObj.arrowName | default("Arrow " + arrowObj.arrowNumber),
+        location: arrowObj.location,
+        address: arrowObj.address,
+        pageUrl: arrowPage.url | url,
+        countyName: arrowObj.countyName,
+        dateInstalled: arrowObj.dateInstalled,
+        dateDedicated: arrowObj.dateDedicated,
+        markerText: arrowObj.markerText
+    } %}
+    {% set arrowsForMap = (arrowsForMap.push(jsArrow), arrowsForMap) %}
+  {% endif %}
+{% endfor %}
+
+{# Inline script to pass Nunjucks-processed data to global JavaScript variables #}
+<script>
+    window.COUNTY_MAP_GEOJSON_FEATURE = {{ countyGeoJsonFeature | jsonify | safe if countyGeoJsonFeature else 'null' }};
+    window.COUNTY_MAP_ARROWS_DATA = {{ arrowsForMap | jsonify | safe }};
+    window.COUNTY_MAP_DISPLAY_NAME = {{ county.displayName | jsonify | safe if county.displayName else county.name | jsonify | safe }};
+    {# Assumes ELEVENTY_IMG_ARROW_URL and ELEVENTY_IMG_ARROW_SHADOW_URL are set globally by base.njk or page template #}
+    {# If not, you would add them here too:
+    // window.ELEVENTY_IMG_ARROW_URL = "{{ '/img/arrow-logo.png' | url }}";
+    // window.ELEVENTY_IMG_ARROW_SHADOW_URL = "{{ '/img/arrow-logo-shadow.png' | url }}";
+    #}
+</script>
+
+{# Link to the external JavaScript file that will use the global variables above #}
+<script src="{{ '/js/county-specific-map.js' | url }}"></script>

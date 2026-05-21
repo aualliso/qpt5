@@ -1,0 +1,108 @@
+---
+layout: layouts/base.njk
+title: "{{ arrow.arrowName }} - Arrow #{{ arrow.arrowNumber }} - Quanah Parker Trail"
+---
+
+<header class="county-header">
+    <h1> {{ arrow.arrowName }}</h1>
+    <h2>Arrow #{{ arrow.arrowNumber }}</h2>
+    <nav class="page-toc" aria-labelledby="toc-heading">
+        <h3 id="toc-heading">Table of Contents</h3>
+        <ul>
+            <li><a href="#arrow-overview">Arrow Overview</a></li>
+            {% if arrow.geography_md %}<li><a href="#geography">Geographical Context</a></li>{% endif %}
+            {% if arrow.history_md %}<li><a href="#history">Historical Significance</a></li>{% endif %}
+            <li><a href="#installation">Installation & Dedication</a></li>
+            {% if arrow.galleryImages and arrow.galleryImages.length > 0 %}
+            <li><a href="#photo-gallery">Photo Gallery</a></li>
+            {% endif %}
+            {% if arrow.visitor_info_md %}<li><a href="#visitor-info">Visitor Information</a></li>{% endif %}
+            {% if arrow.bibliography_md %}<li><a href="#bibliography">Bibliography</a></li>{% endif %}
+        </ul>
+    </nav>
+</header>
+
+<div class="county-content">
+    {# Section 1: Arrow Overview (Info + Main Image + Map) #}
+    <section id="arrow-overview">
+        <h2>Overview</h2>
+        <div class="marker-details-grid">
+            <div class="marker-info">
+                {# This line had a ~ fix #}
+                <p><strong>County: <a href="{{ ('/counties/' ~ (arrow.countyName | lower | slugify) ~ '.html') | url }}">{{ arrow.countyName }} County</a></strong></p>
+                {% if arrow.location %}<p><strong>Location:</strong> {{ arrow.location }}</p>{% endif %}
+                {% if arrow.address %}<p><strong>Address:</strong> <a href="https://www.google.com/maps?q={{ arrow.address | urlencode }}" target="_blank" rel="noopener noreferrer">{{ arrow.address }}</a></p>{% endif %}
+                <p><strong>Coordinates:</strong> {{ arrow.lat }}, {{ arrow.lon }}</p>
+                <h4>Marker Text:</h4>
+                <blockquote class="marker-text">
+                    {{ arrow.markerText | markdownify | safe }}
+                </blockquote>
+                {% if arrow.lat and arrow.lon %}
+                <p><a href="https://www.google.com/maps?q={{ arrow.lat }},{{ arrow.lon }}" target="_blank" rel="noopener noreferrer" class="button navigation-button">Get Directions via Google Maps</a></p>
+                {% endif %}
+            </div>
+            <div class="marker-image">
+                {% if arrow.mainImage %}
+                {# This line also had a ~ fix for the alt text #}
+                <img src="{{ arrow.mainImage | url }}" alt="{{ arrow.mainImageAlt if arrow.mainImageAlt else 'Photo of the ' ~ arrow.arrowName ~ ' arrow' }}" loading="lazy">
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    {# Section 2: Geographical Context #}
+        {% if arrow.geography_md %}
+        <section id="geography">
+            <h2>Geographical Context</h2>
+    {{ arrow.geography_md | markdownify | safe }}
+        </section>
+        {% endif %}
+    {# Section 3: Historical Significance #}
+        {% if arrow.history_md %}
+        <section id="history">
+            <h2>Historical Significance</h2>
+            {{ arrow.history_md | markdownify | safe }}
+        </section>
+        {% endif %}
+    {# Other sections will be added below here #}
+    {# Section 4: Installation Details #}
+        <section id="installation">
+            <h2>Installation & Dedication</h2>
+            <ul>
+                <li><strong>Installed On:</strong> {{ arrow.dateInstalled }}</li> {# Filter |date(...) should be removed #}
+                {% if arrow.dateDedicated and arrow.dateDedicated !== "None" %}<li><strong>Dedicated On:</strong> {{ arrow.dateDedicated }}</li>{% endif %} {# Filter |date(...) should be removed #}
+                {% if arrow.sponsors %}<li><strong>Sponsors/Acknowledgements:</strong> {{ arrow.sponsors }}</li>{% endif %}
+            </ul>
+            {% if arrow.installation_details_md %}
+            {{ arrow.installation_details_md | markdownify | safe }}
+            {% endif %}
+        </section>
+    {# Section 5: Photo Gallery #}
+        {% if arrow.galleryImages and arrow.galleryImages.length > 0 %}
+        <section id="photo-gallery">
+            <h2>Photo Gallery</h2>
+            <p>Images related to the {{ arrow.arrowName }} Quanah Parker Arrow</p>
+            <div class="horizontal-scroll-gallery">
+                {% for image in arrow.galleryImages %}
+                {# Using robust conditional for href #}
+                <a href="{{ (image.largeSrc if image.largeSrc and image.largeSrc != "" else image.src) | url }}" target="_blank" rel="noopener noreferrer" title="View larger image: {{ image.alt }}">
+                <img src="{{ image.src | url }}" alt="{{ image.alt }}" loading="lazy">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    {# Section 6: Visitor Information / Nearby #}
+    {% if arrow.visitor_info_md %}
+        <section id="visitor-info">
+            <h2>Visitor Information</h2>
+            {{ arrow.visitor_info_md | markdownify | safe }}
+        </section>
+    {% endif %}
+    {# Section 7: Bibliography #}
+        {% if arrow.bibliography_md %}
+        <section id="bibliography">
+            <h2>Bibliography</h2>
+            {{ arrow.bibliography_md | markdownify | safe }}
+        </section>
+        {% endif %}
+</div>

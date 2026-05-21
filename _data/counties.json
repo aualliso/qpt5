@@ -1,0 +1,366 @@
+[
+  {
+    "id": "armstrong",
+    "name": "Armstrong",
+    "displayName": "Armstrong County",
+    "introduction_md": "Armstrong County, located in the south-central Texas Panhandle, is defined by a dramatic and visually arresting geographical dichotomy: the stark, level expanse of the High Plains and the rugged, eroded breaks of the Caprock Escarpment. The northern and western portions of the county sit atop the Llano Estacado, a vast, remarkably flat plateau that elevates the region to approximately 3,400 feet above sea level. This area is characterized by deep, arable clay loam soils supporting extensive winter wheat and sorghum farming, typical of the wider Panhandle's agricultural landscape. However, this flatness is abruptly interrupted by the Caprock, a geological 'break' that slashes across the county, marking the transition from the high tableland to the lower rolling plains. This escarpment is not merely a slope but a distinct cliff-like feature that exposes millions of years of geological strata, serving as the defining boundary between the high plains and the chaotic topography below.\n\nDominating the southern and central geography is the spectacular incision of the Palo Duro Canyon, carved by the Prairie Dog Town Fork of the Red River. As the river winds through the county, it creates a labyrinth of colorful sandstone mesas, steep cliffs, and deep ravines that drop steeply from the high plains—sometimes varying in elevation by nearly 1,000 feet within a short distance. This 'Rough Broken Land,' as it is often classified in soil surveys, supports a distinct ecosystem of juniper, mesquite, and scrub oak, contrasting sharply with the shortgrass prairie above. The Mulberry Creek drainage also dissects the eastern part of the county, further contributing to the jagged, erratic terrain that historically made traversing this section of the Panhandle prevalent with natural barriers yet rich in shelter and water sources. \\n\\n for paragraphs)",
+    "visitor_info_md": "#### Nearby Points of Interest:\n* [Armstrong County Museum](https://www.armstrongcountymuseum.net//)\n* [Charles and Mary Ann Goodnight Ranch State Historic Site](https://thc.texas.gov/historic-sites/goodnight-ranch/)\n\n#### Local Information:\n* [Claude Chamber of Commerce](https://claudetexas.com/)"
+  },
+  {
+    "id": "bailey",
+    "name": "Bailey",
+    "displayName": "Bailey County",
+    "introduction_md": "Bailey County is notable for its location along many trails as they crossed the county. Two major draws (Blackwater Draw and Yellowhouse Draw) bisect the county \\n\\n for paragraphs)",
+    "visitor_info_md": "#### Nearby Points of Interest:\n* [Muleshoe Heritage Center](https://www.muleshoeheritagefoundation.org/heritage-center)"
+  },
+  {
+    "id": "borden",
+    "name": "Borden",
+    "displayName": "Borden County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "briscoe",
+    "name": "Briscoe",
+    "displayName": "Briscoe County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "carson",
+    "name": "Carson",
+    "displayName": "Carson County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "castro",
+    "name": "Castro",
+    "displayName": "Castro County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "childress",
+    "name": "Childress",
+    "displayName": "Childress County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "cochran",
+    "name": "Cochran",
+    "displayName": "Cochran County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "collingsworth",
+    "name": "Collingsworth",
+    "displayName": "Collingsworth County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "cottle",
+    "name": "Cottle",
+    "displayName": "Cottle County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "crosby",
+    "name": "Crosby",
+    "displayName": "Crosby County",
+    "introduction_md": "( \\n\\n for paragraphs)",
+    "visitor_info_md": "#### Nearby Points of Interest:\n* [Crosby County Pioneer Memorial Museum](https://ccpmmuseum.com/) | 101 W Main St | Crosbyton, TX 79322"
+  },
+  {
+    "id": "dallam", 
+    "name": "Dallam", 
+    "displayName": "Dallam County", 
+    "introduction_md": "Dallam County is in the extreme northwest corner of the State of Texas. \n Great stuff! (Your Markdown content here. Use \\n\\n for paragraphs)",
+    "visitor_info_md": "#### Nearby Points of Interest:\n* [XIT Museum](https://www.xitmuseum.org/)\n* [Rita Blanca National Grasslands](https://texastimetravel.com/directory/rita-blanca-national-grasslands/)\n\n#### Local Information:\n* [Dalhart Area Chamber of Commerce](https://dalhart.org/)\n* [Dallam-Hartley County Library](https://dallam.harringtonlc.org/)"
+  },
+  {
+    "id": "dawson",
+    "name": "Dawson",
+    "displayName": "Dawson County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "deaf-smith",
+    "name": "Deaf Smith",
+    "displayName": "Deaf Smith County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "dickens",
+    "name": "Dickens",
+    "displayName": "Dickens County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "donley",
+    "name": "Donley",
+    "displayName": "Donley County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "floyd",
+    "name": "Floyd",
+    "displayName": "Floyd County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "foard",
+    "name": "Foard",
+    "displayName": "Foard County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "gaines",
+    "name": "Gaines",
+    "displayName": "Gaines County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "garza",
+    "name": "Garza",
+    "displayName": "Garza County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "gray",
+    "name": "Gray",
+    "displayName": "Gray County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "hale",
+    "name": "Hale",
+    "displayName": "Hale County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "hall",
+    "name": "Hall",
+    "displayName": "Hall County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "hansford",
+    "name": "Hansford",
+    "displayName": "Hansford County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "hardeman",
+    "name": "Hardeman",
+    "displayName": "Hardeman County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "hartley",
+    "name": "Hartley",
+    "displayName": "Hartley County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "hemphill",
+    "name": "Hemphill",
+    "displayName": "Hemphill County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "hockley",
+    "name": "Hockley",
+    "displayName": "Hockley County",
+    "introduction_md": "Hockley County\n\nHockley County",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "howard",
+    "name": "Howard",
+    "displayName": "Howard County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "hutchinson",
+    "name": "Hutchinson",
+    "displayName": "Hutchinson County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "kent",
+    "name": "Kent",
+    "displayName": "Kent County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "king",
+    "name": "King",
+    "displayName": "King County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "knox",
+    "name": "Knox",
+    "displayName": "Knox County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "lamb",
+    "name": "Lamb",
+    "displayName": "Lamb County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "lipscomb",
+    "name": "Lipscomb",
+    "displayName": "Lipscomb County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "lubbock",
+    "name": "Lubbock",
+    "displayName": "Lubbock County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "lynn",
+    "name": "Lynn",
+    "displayName": "Lynn County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "mitchell",
+    "name": "Mitchell",
+    "displayName": "Mitchell County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "moore",
+    "name": "Moore",
+    "displayName": "Moore County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "motley", 
+    "name": "Motley", 
+    "displayName": "Motley County", 
+    "introduction_md": "Motley County’s history is defined by its role as a geographic thoroughfare where the paths of Comanches, conquistadors, and cattlemen converged. Before European settlement, the region was a critical artery of the Comanchería, with the Valley of Tears near the Quitaque Peaks serving as a notorious trade rendezvous where Comancheros exchanged goods with the Kiowa and Comanche for livestock and captives. Later, the U.S. Army solidified these informal indigenous routes into the Mackenzie Trail, a military supply road carved by Colonel Ranald S. Mackenzie during the Red River War to connect frontier forts to the high plains battlegrounds. This military infrastructure eventually paved the way for the great cattle drives of the late 19th century; legendary operations like the Matador Ranch utilized these same corridors to move massive herds to railheads, effectively transforming the county from a nomadic wintering ground into a permanent ranching empire. \\n\\n for paragraphs)",
+    "visitor_info_md": "#### Nearby Points of Interest:\n* Motley County Historical Museum | 828 Dundee Street | Matador, TX 79244"
+  },
+  {
+    "id": "ochiltree",
+    "name": "Ochiltree",
+    "displayName": "Ochiltree County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "oldham",
+    "name": "Oldham",
+    "displayName": "Oldham County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "parmer",
+    "name": "Parmer",
+    "displayName": "Parmer County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "potter",
+    "name": "Potter",
+    "displayName": "Potter County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "randall",
+    "name": "Randall",
+    "displayName": "Randall County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "roberts",
+    "name": "Roberts",
+    "displayName": "Roberts County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "scurry",
+    "name": "Scurry",
+    "displayName": "Scurry County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "sherman",
+    "name": "Sherman",
+    "displayName": "Sherman County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "swisher",
+    "name": "Swisher",
+    "displayName": "Swisher County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "terry",
+    "name": "Terry",
+    "displayName": "Terry County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "wheeler",
+    "name": "Wheeler",
+    "displayName": "Wheeler County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  },
+  {
+    "id": "yoakum",
+    "name": "Yoakum",
+    "displayName": "Yoakum County",
+    "introduction_md": "",
+    "visitor_info_md": ""
+  }
+]

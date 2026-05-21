@@ -1,0 +1,853 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ochiltree County - Quanah Parker Trail</title> 
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/qjy2ghh.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.css"
+     type="text/css">
+
+</head>
+<body class=" "> 
+
+    
+<header class="site-main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="/">
+                
+                <img src="/img/qpt-seal-head-white.png" alt="Trail Arrow" class="logo-arrow">
+                <span class="logo-text">Quanah Parker Trail</span>
+            </a>
+        </div>
+        
+        <button class="menu-toggle" id="mobile-menu-toggle" aria-controls="main-navigation" aria-expanded="false">
+            <span class="sr-only">Toggle Menu</span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        
+        <nav class="main-nav" id="main-navigation">
+            <ul>
+                <li><a href="/">Home</a></li>
+                
+                
+                
+                <li><a href="/story.html">The Story</a></li>
+                <li><a href="/arrows.html">The Arrows</a></li>
+                <li><a href="/#people-section">The People</a></li>
+                
+                
+                <li><a href="/map.html">Map</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+        
+<header class="county-header">
+    <h1>Ochiltree County</h1>
+    <p>Discover the Quanah Parker Trail arrows and rich history in Ochiltree County.</p>
+    
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <nav class="page-toc" aria-labelledby="toc-heading">
+        <h3 id="toc-heading">Table of Contents</h3>
+        <ul>
+            <li><a href="#introduction">Introduction to Ochiltree County</a></li>
+            
+            <li><a href="#marker-map">Map of Arrows in Ochiltree County</a></li>
+            <li><a href="#visitor-info">Visitor Information & Resources</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="county-content">
+    <section id="introduction">
+        <h2>Introduction to Ochiltree County</h2>
+        
+    </section>
+
+    
+    <section id="arrow-detail">
+        <h2>Arrows in Ochiltree County</h2>
+        <p>There are currently no Quanah Parker Trail arrows documented for this county.</p>
+    </section>
+    
+
+    <section id="marker-map">
+        <h2>Map of Arrows in Ochiltree County</h2>
+        <p>Explore the map below for arrow locations and the county boundary.</p>
+        <div class="osm-map" id="county-specific-map" style="height: 500px; width: 100%;"></div>
+    </section>
+
+    <section id="visitor-info">
+        <h2>Visitor Information & Resources</h2>
+        
+    </section>
+</div>
+<script>
+        // Define global JS variables that county-specific-map.js will use
+        var ELEVENTY_IMG_ARROW_URL = "/img/arrow-logo.png"; // IMPORTANT: Update this path
+        var ELEVENTY_IMG_ARROW_SHADOW_URL = "/img/arrow-logo-shadow.png"; // IMPORTANT: Update this path
+</script>
+
+
+
+
+
+
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script>
+    window.COUNTY_MAP_GEOJSON_FEATURE = {"type":"Feature","properties":{"gid":525,"statefp":"48","countyfp":"357","countyns":"01383964","geoid":"48357","name":"Ochiltree","namelsad":"Ochiltree County","lsad":"06","classfp":"H1","mtfcc":"G4020","csafp":null,"cbsafp":null,"metdivfp":null,"funcstat":"A","aland":2376792100,"awater":1331778,"intptlat":"+36.2787442","intptlon":"-100.8158636"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-101.085745,36.125113],[-101.085745,36.125126],[-101.085745,36.125282],[-101.085743,36.126605],[-101.085735,36.133831],[-101.085723,36.145902],[-101.085713,36.155637],[-101.085708,36.160506],[-101.085707,36.161499],[-101.085707,36.161677],[-101.085707,36.161742],[-101.085707,36.16178],[-101.085706,36.161801],[-101.085706,36.161821],[-101.085706,36.161953],[-101.085705,36.162922],[-101.085698,36.1702],[-101.085685,36.182885],[-101.085678,36.189976],[-101.085678,36.190723],[-101.08567,36.199233],[-101.085656,36.213798],[-101.085642,36.228319],[-101.085628,36.243061],[-101.085634,36.250032],[-101.085634,36.250067],[-101.085623,36.257442],[-101.085618,36.260484],[-101.085609,36.263823],[-101.085609,36.263834],[-101.085608,36.264026],[-101.085587,36.271894],[-101.085576,36.2766],[-101.085565,36.279171],[-101.085535,36.286487],[-101.085479,36.300192],[-101.085478,36.300863],[-101.08547,36.30806],[-101.085453,36.323801],[-101.085434,36.330015],[-101.085419,36.335501],[-101.085394,36.344314],[-101.085392,36.345376],[-101.085351,36.358785],[-101.085337,36.363506],[-101.085311,36.373373],[-101.085311,36.373405],[-101.08529,36.373472],[-101.085283,36.373494],[-101.085238,36.373633],[-101.085138,36.373947],[-101.084793,36.37503],[-101.084874,36.397785],[-101.084875,36.400668],[-101.084895,36.402479],[-101.084896,36.40257],[-101.084959,36.419602],[-101.084997,36.429692],[-101.084998,36.431557],[-101.085002,36.447595],[-101.085036,36.459114],[-101.085057,36.466138],[-101.08506,36.467154],[-101.085124,36.488569],[-101.085156,36.499244],[-101.08374,36.499258],[-101.061849,36.499459],[-101.059554,36.49948],[-101.057584,36.499498],[-101.053967,36.499532],[-101.05274,36.499567],[-101.052418,36.499563],[-101.052321,36.499562],[-101.045331,36.49954],[-101.04414,36.499506],[-101.041367,36.499457],[-101.012895,36.499496],[-101.000483,36.499514],[-100.995169,36.499534],[-100.977271,36.499593],[-100.97727,36.499654],[-100.977238,36.499818],[-100.977166,36.499894],[-100.977037,36.499926],[-100.974369,36.499903],[-100.973835,36.499898],[-100.970657,36.499899],[-100.963167,36.499926],[-100.956821,36.499924],[-100.954487,36.499917],[-100.954321,36.499917],[-100.954153,36.499916],[-100.948387,36.499922],[-100.94079,36.49993],[-100.940314,36.499929],[-100.937386,36.499936],[-100.93613,36.49994],[-100.934367,36.49994],[-100.922368,36.499889],[-100.91824,36.499872],[-100.916525,36.499865],[-100.911349,36.49993],[-100.907183,36.49993],[-100.904435,36.499911],[-100.902965,36.499928],[-100.902322,36.499926],[-100.90016,36.49992],[-100.89596,36.49992],[-100.88919,36.499915],[-100.886232,36.499913],[-100.884347,36.499912],[-100.88221,36.49991],[-100.880246,36.499911],[-100.87543,36.499862],[-100.875344,36.49986],[-100.873132,36.499906],[-100.864287,36.499887],[-100.862181,36.499882],[-100.859681,36.499876],[-100.857562,36.49987],[-100.855686,36.499861],[-100.85296,36.499866],[-100.85096,36.499859],[-100.8503,36.49987],[-100.849584,36.499808],[-100.849435,36.499801],[-100.84937,36.499799],[-100.846237,36.499652],[-100.845825,36.499663],[-100.829617,36.499638],[-100.824236,36.499618],[-100.82412,36.499619],[-100.824105,36.499619],[-100.806182,36.499674],[-100.806147,36.499674],[-100.806099,36.499676],[-100.802909,36.499621],[-100.802749,36.499621],[-100.802737,36.499621],[-100.76848,36.499618],[-100.76165,36.499618],[-100.761811,36.49958],[-100.72425,36.49958],[-100.724226,36.499579],[-100.723052,36.499558],[-100.710669,36.499559],[-100.708677,36.499553],[-100.708626,36.499553],[-100.70859,36.499549],[-100.707011,36.499521],[-100.685267,36.499516],[-100.685151,36.499516],[-100.675719,36.499513],[-100.675707,36.499513],[-100.65773,36.499483],[-100.657746,36.4995],[-100.648343,36.499495],[-100.648318,36.499499],[-100.645241,36.499461],[-100.639688,36.499457],[-100.639675,36.499457],[-100.61553,36.499457],[-100.612161,36.49946],[-100.594481,36.499468],[-100.592591,36.499428],[-100.592551,36.499429],[-100.592363,36.49943],[-100.583196,36.499487],[-100.583502,36.499474],[-100.583399,36.499449],[-100.583379,36.499443],[-100.581211,36.499451],[-100.581058,36.499452],[-100.578757,36.499461],[-100.578114,36.499463],[-100.578085,36.499457],[-100.57624,36.499435],[-100.554101,36.499389],[-100.553992,36.499389],[-100.54924,36.499377],[-100.546145,36.499343],[-100.546145,36.499246],[-100.546116,36.488721],[-100.546113,36.484918],[-100.54611,36.478976],[-100.54611,36.477911],[-100.546112,36.466863],[-100.546108,36.463446],[-100.546103,36.458583],[-100.546099,36.45637],[-100.546098,36.456086],[-100.546096,36.455565],[-100.546094,36.45451],[-100.54609,36.452393],[-100.546088,36.451354],[-100.546086,36.450374],[-100.546086,36.450198],[-100.546085,36.448953],[-100.546082,36.446718],[-100.546071,36.435321],[-100.546067,36.432327],[-100.546057,36.422395],[-100.54605,36.41992],[-100.546028,36.411601],[-100.546045,36.401098],[-100.54603,36.391957],[-100.546027,36.390806],[-100.546022,36.384257],[-100.545985,36.376343],[-100.545981,36.375601],[-100.545979,36.375033],[-100.546054,36.370503],[-100.546023,36.369968],[-100.546026,36.36162],[-100.546034,36.348235],[-100.546034,36.347386],[-100.546052,36.318273],[-100.546068,36.289257],[-100.546073,36.280329],[-100.546074,36.277374],[-100.546158,36.275594],[-100.546207,36.274567],[-100.546173,36.267442],[-100.546161,36.26494],[-100.546138,36.260054],[-100.546113,36.254651],[-100.546093,36.250036],[-100.546037,36.215326],[-100.546038,36.21485],[-100.546053,36.205318],[-100.546055,36.203791],[-100.546062,36.200154],[-100.546069,36.196121],[-100.546116,36.166484],[-100.54618,36.125038],[-100.546265,36.118284],[-100.546402,36.09996],[-100.546451,36.092979],[-100.546467,36.091006],[-100.546492,36.087546],[-100.546496,36.086971],[-100.546524,36.083117],[-100.546532,36.082023],[-100.546548,36.079859],[-100.546591,36.074019],[-100.546589,36.072606],[-100.546724,36.056536],[-100.549608,36.056556],[-100.559022,36.056597],[-100.57459,36.056648],[-100.576356,36.056656],[-100.585078,36.056697],[-100.593712,36.056738],[-100.618582,36.056858],[-100.625419,36.056552],[-100.631963,36.056621],[-100.642915,36.056739],[-100.643509,36.056743],[-100.655708,36.056837],[-100.660174,36.056871],[-100.665604,36.056921],[-100.666077,36.056925],[-100.667031,36.056933],[-100.66777,36.056939],[-100.679327,36.057046],[-100.679672,36.057051],[-100.679756,36.057052],[-100.698243,36.056916],[-100.704899,36.056865],[-100.713934,36.056797],[-100.71513,36.056789],[-100.722216,36.056851],[-100.730391,36.056923],[-100.736164,36.056945],[-100.740849,36.056964],[-100.746059,36.057052],[-100.750423,36.057092],[-100.754495,36.05711],[-100.762122,36.057129],[-100.764392,36.057135],[-100.778126,36.057174],[-100.781135,36.057185],[-100.784582,36.057199],[-100.796865,36.057247],[-100.801534,36.057265],[-100.805092,36.057265],[-100.812225,36.057284],[-100.815552,36.057293],[-100.827451,36.057335],[-100.834557,36.057361],[-100.834818,36.057362],[-100.83488,36.057362],[-100.834905,36.057362],[-100.834925,36.057362],[-100.834954,36.057363],[-100.835025,36.057363],[-100.835073,36.057363],[-100.835302,36.057364],[-100.837596,36.057372],[-100.846393,36.057402],[-100.847982,36.057407],[-100.84828,36.057408],[-100.848306,36.057408],[-100.851089,36.057418],[-100.857982,36.057458],[-100.862657,36.057483],[-100.863966,36.057494],[-100.866415,36.05751],[-100.875426,36.057584],[-100.878981,36.057576],[-100.889885,36.057601],[-100.892105,36.05761],[-100.902065,36.057653],[-100.903947,36.057662],[-100.908567,36.057681],[-100.913857,36.057703],[-100.915916,36.057712],[-100.916761,36.057713],[-100.917605,36.057714],[-100.920769,36.057716],[-100.921001,36.057716],[-100.92113,36.057716],[-100.922602,36.057717],[-100.927836,36.057721],[-100.938409,36.05772],[-100.941711,36.05772],[-100.94423,36.057705],[-100.946571,36.057712],[-100.946976,36.057713],[-100.95289,36.057731],[-100.955123,36.057736],[-100.960018,36.057742],[-100.967111,36.057753],[-100.97327,36.057759],[-100.973619,36.057759],[-100.97589,36.057762],[-100.993497,36.057801],[-101.00043,36.057799],[-101.010297,36.057792],[-101.018965,36.057816],[-101.029049,36.057845],[-101.036979,36.057887],[-101.03954,36.057901],[-101.043882,36.057906],[-101.047781,36.057911],[-101.054718,36.057961],[-101.058637,36.05799],[-101.059607,36.057975],[-101.072706,36.057772],[-101.072751,36.057771],[-101.083594,36.057604],[-101.085716,36.057572],[-101.085714,36.057875],[-101.085645,36.066813],[-101.085626,36.074203],[-101.085611,36.080693],[-101.085619,36.083059],[-101.085643,36.090146],[-101.085671,36.097908],[-101.085702,36.106064],[-101.08574,36.115521],[-101.085737,36.117044],[-101.08573,36.12134],[-101.085728,36.12283],[-101.085745,36.125034],[-101.085745,36.125113]]]]}};
+    window.COUNTY_MAP_ARROWS_DATA = [];
+    window.COUNTY_MAP_DISPLAY_NAME = "Ochiltree County";
+    
+    
+</script>
+
+
+<script src="/js/county-specific-map.js"></script>
+    </main>
+
+    
+    <footer class="site-footer">
+        <div class="scrolling-banner-container">
+            <div class="scrolling-banner-track">
+                <span>Matador</span><span>&bull;</span>
+                <span>Crosbyton</span><span>&bull;</span>
+                <span>Brownfield</span><span>&bull;</span>
+                <span>Meadow</span><span>&bull;</span>
+                <span>Benjamin</span><span>&bull;</span>
+                <span>Crowell</span><span>&bull;</span>
+                <span>Quanah</span><span>&bull;</span>
+                <span>Spur</span><span>&bull;</span>
+                <span>Paducah</span><span>&bull;</span>
+                <span>Post</span><span>&bull;</span>
+                <span>Seagraves</span><span>&bull;</span>
+                <span>Seminole</span><span>&bull;</span>
+                <span>Denver City</span><span>&bull;</span>
+                <span>Tahoka</span><span>&bull;</span>
+                <span>O'Donnell</span><span>&bull;</span>
+                <span>Shamrock</span><span>&bull;</span>
+                <span>Wheeler</span><span>&bull;</span>
+                <span>Mobeetie</span><span>&bull;</span>
+                <span>Big Spring</span><span>&bull;</span>
+                <span>Old Tascosa-Boys Ranch</span><span>&bull;</span>
+                <span>Dalhart</span><span>&bull;</span>
+                <span>O'Donnell</span><span>&bull;</span>
+                <span>Brownfield</span><span>&bull;</span>
+                <span>Wellington</span><span>&bull;</span>
+                <span>Higgins</span><span>&bull;</span>
+                <span>Lipscomb</span><span>&bull;</span>
+                <span>Stud Duck Ranch</span><span>&bull;</span>
+                <span>Tulia</span><span>&bull;</span>
+                <span>Lamesa</span><span>&bull;</span>
+                <span>Colorado City</span><span>&bull;</span>
+                <span>Tule Canyon</span><span>&bull;</span>
+                <span>Borger</span><span>&bull;</span>
+                <span>Canyon</span><span>&bull;</span>
+                <span>Lubbock</span><span>&bull;</span>
+                <span>Plains</span><span>&bull;</span>
+                <span>Crosbyton</span><span>&bull;</span>
+                <span>Floydada</span><span>&bull;</span>
+                <span>Friona</span><span>&bull;</span>
+                <span>Hereford</span><span>&bull;</span>
+                <span>Turkey</span><span>&bull;</span>
+                <span>Memphis</span><span>&bull;</span>
+                <span>Canadian</span><span>&bull;</span>
+                <span>Muleshoe Wildlife Refuge</span><span>&bull;</span>
+                <span>Muleshoe</span><span>&bull;</span>
+                <span>Levelland</span><span>&bull;</span>
+                <span>Morton</span><span>&bull;</span>
+                <span>Yellow House Ranch</span><span>&bull;</span>
+                <span>Panhandle</span><span>&bull;</span>
+                <span>Clarendon</span><span>&bull;</span>
+                <span>Charles and Mary Ann Goodnight Ranch State Historic Site</span><span>&bull;</span>
+                <span>Plainview</span><span>&bull;</span>
+                <span>Abernathy</span><span>&bull;</span>
+                <span>Silverton</span><span>&bull;</span>
+                <span>Quitaque</span><span>&bull;</span>
+                <span>Littlefield</span><span>&bull;</span>
+                <span>Olton</span><span>&bull;</span>
+                <span>Rocky Ford</span><span>&bull;</span>
+                <span>Earth</span><span>&bull;</span>
+                <span>Sudan</span><span>&bull;</span>
+                <span>Stratford</span><span>&bull;</span>
+                <span>Channing</span><span>&bull;</span>
+                <span>Jayton</span><span>&bull;</span>
+                <span>Snyder</span><span>&bull;</span>
+                <span>Miami</span><span>&bull;</span>
+                <span>Wildcat Bluff</span><span>&bull;</span>
+                <span>Gail</span><span>&bull;</span>
+                <span>Wayside</span><span>&bull;</span>
+                <span>Roaring Springs</span><span>&bull;</span>
+                <span>Childress</span><span>&bull;</span>
+                <span>Vega</span><span>&bull;</span>
+                <span>Pampa</span><span>&bull;</span>
+                <span>Pampa</span><span>&bull;</span>
+                <span>McLean</span><span>&bull;</span>
+                <span>Dimmitt</span><span>&bull;</span>
+                <span>Spearman</span><span>&bull;</span>
+                <span>Tahoka Lake Pasture</span><span>&bull;</span>
+                <span>Guthrie</span><span>&bull;</span>
+                <span>Anton</span><span>&bull;</span>
+                <span>Mackenzie Park</span><span>&bull;</span>
+                <span>Dumas</span><span>&bull;</span>
+                <span>New Home</span><span>&bull;</span>
+            </div>
+        </div>
+        <div class="basic-footer-content">
+    
+    <!-- New Flanked Branding Container -->
+    <div class="footer-branding-row">
+        <a href="https://example1.com" target="_blank" rel="noopener" class="footer-logo-link logo-left">
+            <img src="/img/qptsealwhite.png" alt="First Organization Logo" class="footer-logo-img">
+        </a>
+        
+        <div class="footer-site-title">
+            <a href="/">Quanah Parker Trail</a>
+        </div>
+        
+        <a href="https://example2.com" target="_blank" rel="noopener" class="footer-logo-link logo-right">
+            <img src="/img/tptr-logo-white.png" alt="Second Organization Logo" class="footer-logo-img">
+        </a>
+    </div>
+    <p>
+        <a href="/contact.html">Contact Us</a> |
+        <a href="#privacy">Privacy Policy</a>
+    </p>
+    <p>&copy; <span id="currentYear"></span> Quanah Parker Trail. All Rights Reserved.</p>
+    </footer>
+
+    
+    
+      <button type="button" class="map-fab" id="toggle-mini-map-btn" title="Show County Location Overview">
+          <svg fill="#fff" version="1.1" viewBox="0 0 94 128" xmlns="http://www.w3.org/2000/svg"><path d="m46.977 126.64c-0.28303-0.6875-6.1631-6.4377-10.374-11.663-24.947-33.122-52.761-63.898-20.283-101.3 14.381-13.894 32.113-14.686 50.343-8.2101 51.33 29.702 14.166 78.155-10.235 110.01l-9.4501 11.163zm15.44-50.771c34.237-24.485 7.768-71.633-29.848-55.959-10.984 5.8569-16.434 16.048-16.625 28.068-0.5245 11.693 5.6854 21.471 15.526 27.461 7.0555 3.8401 10.157 4.5337 18.146 4.0577 5.1776-0.30852 8.1611-1.1538 12.801-3.6271z" fill-opacity=".98824"/><path transform="matrix(.87829 0 0 1.0519 .55474 -6.9953)" d="m41.682 89.891a51.223 41.754 0 1 1 1.2766 0.20809" fill="#fff" fill-opacity=".98824"/><path transform="translate(.64535)" d="m43.631 69.129a26.011 20.991 0 1 1 0.64826 0.10461" fill-opacity="0" opacity=".34016"/><path transform="translate(.64535)" d="m31.892 114.28a16.656 11.75 0 1 1 0.41511 0.0586" fill-opacity="0"/><path transform="matrix(.9702 0 0 1.0272 -4.0588 -5.7504)" d="m45.521 84.824a34.453 33.54 0 1 1 0.85866 0.16716" fill="#004E89"/><path transform="matrix(.6463 0 0 .61681 5.1261 4.9014)" d="m57.079 104.61a34.203 36.623 0 1 1 0.85244 0.18252" fill="#fff"/></svg>
+      </button>
+      <div class="mini-map-popup" id="mini-map-popup-container">
+          
+
+ 
+
+
+<div class="county-map-overview-link-content">
+  <h4 class="mini-map-title">Texas Plains Trail Region Map</h4> 
+  <div class="county-map-overview-svg-container">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146.02 143.85" aria-labelledby="mapTitle" role="img">
+                <defs>
+                    <style>
+                        /* SVG specific styles */
+                        .st0{
+                            fill:#CC0000; /* Your chosen fill */
+                            stroke:#fff; /* White border */
+                            stroke-linejoin:bevel;
+                            stroke-width:0.75px;
+                            transition: fill 0.2s ease-in-out, stroke-width 0.2s ease-in-out; /* Smooth hover effect */
+                        }
+                        .st0:hover {
+                            fill: #007cc3; /* Blue on hover */
+                            stroke-width: 0.85px; /* Slightly thicker stroke on hover */
+                            cursor: pointer; /* Indicate interactivity */
+                        }
+                        /* --- Focus Styles (Keep your existing focus styles from style.css) --- */
+                        .st0:focus { outline: none; }
+                        .st0:focus-visible {
+                            outline: none;
+                            stroke: #ffffff;
+                            stroke-width: 1.5px;
+                            fill: #007cc3; /* Optional: Match hover fill or use a distinct focus color */
+                            filter: drop-shadow(2px 2px 3px rgba(255, 255, 255, 0.9));
+                        }
+                    </style>
+                </defs>
+                <g id="svg3247" tabindex="0"> {/* Ensure the group itself isn't focusable if paths are */}
+                    {/* Add a tabindex="-1" to the if you only want paths focusable */}
+                    <path id="Crosby" d="m64.14 81.47 12.57.61-.62 12.76-12.54-.63.59-12.74" class="st0" aria-label="Crosby County"/>
+                    <path id="Lubbock" d="m51.57 80.88 12.57.6-.59 12.74-12.56-.61.58-12.73" class="st0" aria-label="Lubbock County"/>
+                    <path id="Hockley" d="m38.84 80.01 12.73.87-.58 12.73-12.54-.8.38-12.79" class="st0" aria-label="Hockley County"/>
+                    <path id="Cochran" d="m28.46 79.28 10.38.73-.38 12.79L27.3 92l.5-5.32.67-7.4" class="st0" aria-label="Cochran County"/>
+                    <path id="Floyd" d="m67.17 67.51 10.28.56-.73 14.02-12.57-.61.8-14.09 2.23.13" class="st0" aria-label="Floyd County"/>
+                    <path id="Hale" d="m52.38 66.59 2.21.14 10.35.65-.8 14.09-12.57-.6.81-14.29" class="st0" aria-label="Hale County"/>
+                    <path id="Lamb" d="m39.85 65.75 2.14.16 10.39.68-.81 14.29-12.73-.87 1.01-14.26" class="st0" aria-label="Lamb County"/>
+                    <path id="Bailey" d="m39.85 65.75-1.01 14.26-10.38-.73 1.12-13.95.02-.31 10.25.73" class="st0" aria-label="Bailey County"/>
+                    <path id="Briscoe" d="m67.9 54.78 9.05.48 3.46.19-.69 12.74-2.28-.11-10.28-.56.73-12.73" class="st0" aria-label="Briscoe County"/>
+                    <path id="Swisher" d="m55.38 54 8.77.56 3.75.23-.73 12.73-2.23-.13-10.35-.65.79-12.73" class="st0" aria-label="Swisher County"/>
+                    <path id="Castro" d="m51.33 53.76 4.05.23-.79 12.73-2.21-.14-10.39-.68.88-12.69 8.47.55" class="st0" aria-label="Castro County"/>
+                    <path id="Parmer" d="m30.58 52.32 12.28.89-.88 12.69-2.14-.16-10.25-.73.98-12.7" class="st0" aria-label="Parmer County"/>
+                    <path id="Armstrong" d="m65.06 41.82 12.68.74-.78 12.7-9.05-.48-3.75-.23.91-12.74" class="st0" aria-label="Armstrong County"/>
+                    <path id="Randall" d="m52.2 41.01 12.86.81-.91 12.74-8.77-.56-4.05-.23.87-12.75" class="st0" aria-label="Randall County"/>
+                    <path id="Deaf-Smith" d="m30.58 52.32.45-6.04.51-6.7 4.83.34 5.02.25 10.81.85-.87 12.75-8.47-.55-12.28-.89" class="st0" aria-label="Deaf Smith County"/>
+                    <path id="Carson" d="M65.53 29.3v-.11l12.62.67v.18l-.7 12.8-12.68-.74.76-12.8" class="st0" aria-label="Carson County"/>
+                    <path id="Potter" d="m52.84 28.52 12.69.78-.76 12.8-12.86-.81.94-12.78" class="st0" aria-label="Potter County"/>
+                    <path id="Oldham" d="m52.86 28.31-.02.21-.94 12.78-10.81-.85-5.02-.25-4.83-.34.97-12.85 20.65 1.29" class="st0" aria-label="Oldham County"/>
+                    <path id="Hutchinson" d="m66.26 16.55 12.57.71-.68 12.6-12.62-.67.73-12.64" class="st0" aria-label="Hutchinson County"/>
+                    <path id="Moore" d="m53.67 15.78 12.6.78-.73 12.64v.11l-12.69-.78.02-.21.8-12.53" class="st0" aria-label="Moore County"/>
+                    <path id="Hartley" d="m33.17 14.35 20.49 1.43-.8 12.53-20.65-1.29.26-3.41.69-9.25" class="st0" aria-label="Hartley County"/>
+                    <path id="Hansford" d="m79.54 4.25-.7 12.94v.07l-12.57-.71.76-13.02 12.51.71" class="st0" aria-label="Hansford County"/>
+                    <path id="Sherman" d="m57.55 2.94 9.48.6-.76 13.02-12.6-.78.86-13.04 3.03.2" class="st0" aria-label="Sherman County"/>
+                    <path id="Dallam" d="m54.52 2.74-.86 13.04-20.49-1.43.55-7.7.35-4.7.96-.57 19.48 1.35" class="st0" aria-label="Dallam County"/>
+                    <path id="Lynn" d="m63.55 94.22-.75 12.67-3.25-.21-9.36-.52.8-12.55 12.56.61" class="st0" aria-label="Lynn County"/>
+                    <path id="Terry" d="m38.46 92.8 12.54.8-.8 12.55-3.22-.18-9.39-.63.88-12.54" class="st0" aria-label="Terry County"/>
+                    <path id="Yoakum" d="m38.46 92.8-.88 12.54-11.41-.83L27.29 92l11.16.8" class="st0" aria-label="Yoakum County"/>
+                    <path id="Dawson" d="m50.19 106.15 9.36.52-.7 12.74-12.57-.72.7-12.72 3.22.18" class="st0" aria-label="Dawson County"/>
+                    <path id="Gaines" d="m26.17 104.51 11.41.83 9.39.63-.7 12.72h-.2l-20.85-1.45.95-12.74" class="st0" aria-label="Gaines County"/>
+                    <path id="Howard" d="m71.41 120.17-.93 12.74-1.98-.11-10.58-.62.92-12.76 12.57.75" class="st0" aria-label="Howard County"/>
+                    <path id="Borden" d="m62.8 106.89 9.35.46-.72 12.72v.1l-12.58-.75.7-12.74 3.25.21" class="st0" aria-label="Borden County"/>
+                    <path id="Garza" d="m76.09 94.85-.66 12.48-3.28.02-9.35-.46.75-12.67 12.54.63" class="st0" aria-label="Garza County"/>
+                    <path id="Scurry" d="m75.43 107.33 9.3.67-.74 12.79-12.56-.73.72-12.72 3.28-.02" class="st0" aria-label="Scurry County"/>
+                    <path id="Mitchell" d="m71.42 120.07 12.56.73-.74 12.83-3.84-.24-8.91-.48.93-12.74v-.1" class="st0" aria-label="Mitchell County"/>
+                    <path id="Kent" d="m88.7 95.46-.64 12.71-3.33-.17-9.3-.67.66-12.48 12.61.61" class="st0" aria-label="Kent County"/>
+                    <path id="Dickens" d="m76.71 82.09 12.57.57-.58 12.8-12.61-.61.62-12.76" class="st0" aria-label="Dickens County"/>
+                    <path id="Motley" d="m77.44 68.07 2.28.11 10.26.47-.7 14-12.57-.57.73-14.02" class="st0" aria-label="Motley County"/>
+                    <path id="Hall" d="m90.02 55.93 2.97.15-.64 12.7-2.37-.13-10.26-.47.69-12.74 9.6.49" class="st0" aria-label="Hall County"/>
+                    <path id="Donley" d="m90.67 43.18-.65 12.75-9.6-.49-3.46-.19.78-12.7 12.93.62" class="st0" aria-label="Donley County"/>
+                    <path id="Gray" d="m78.14 30.05 12.82.64-.58 12.78-12.93-.62.69-12.8" class="st0" aria-label="Gray County"/>
+                    <path id="Roberts" d="M78.83 17.26v-.07l12.6.67h.15l-.62 12.82-12.82-.64v-.18l.69-12.6" class="st0" aria-label="Roberts County"/>
+                    <path id="Ochiltree" d="m82.58 4.4 9.48.48-.63 12.99-12.6-.67.7-12.94 3.05.15" class="st0" aria-label="Ochiltree County"/>
+                    <path id="Lipscomb" d="m92.06 4.88 12.61.56-.48 13.03-12.61-.59h-.15l.63-13" class="st0" aria-label="Lipscomb County"/>
+                    <path id="Hemphill" d="m104.19 18.47-.21 5.12-.31 7.68-12.7-.58.62-12.82 12.61.59" class="st0" aria-label="Hemphill County"/>
+                    <path id="Wheeler" d="m90.96 30.69 12.7.58-.54 12.79-12.74-.59.58-12.78" class="st0" aria-label="Wheeler County"/>
+                    <path id="Collingsworth" d="m90.38 43.47 12.74.59-.19 4.46-.35 8.32-9.88-.47-2.97-.15.65-12.75" class="st0" aria-label="Collingsworth County"/>
+                    <path id="Childress" d="m93 56.08 9.88.47-.16 5.42-.32 7.31-10.04-.5.64-12.7" class="st0" aria-label="Childress County"/>
+                    <path id="Cottle" d="m89.98 68.66 2.37.13 10.04.5-.1 2.56-.27-.52-.67.06-.24.26-.53 11.52-11.31-.5.7-14" class="st0" aria-label="Cottle County"/>
+                    <path id="King" d="m89.28 82.66 11.31.5 1.25.06-.41 12.83-12.74-.59.58-12.8" class="st0" aria-label="King County"/>
+                    <path id="Knox" d="m114.29 86.7-.31 9.79-12.55-.44.41-12.83 3.87.16 3.25.63 3.7.82 1.22.87.35.63.06.38" class="st0" aria-label="Knox County"/>
+                    <path id="Foard" d="m102.3 71.84 4.36 3.37 6.19 2 1.44-.24.27-.28.09-.28-.28 7.36-.08 2.94-.06-.38-.35-.63-1.22-.87-3.7-.82-3.25-.63-3.87-.16-1.25-.06.53-11.52.24-.26.67-.06.27.52" class="st0" aria-label="Foard County"/>
+                    <path id="Hardeman" d="m106.2 63.71 1.24 1.61.6.71 1.67 1.59.73.17h1.13l.93-1.18.13-.05.26.04 1.14.13.37.15.59.35-.36 9.17-.09.28-.27.28-1.44.24-6.19-2-4.36-3.37.1-2.56.32-7.31 3.49 1.74" class="st0" aria-label="Hardeman County"/>
+                </g>
+            </svg>
+  </div>
+  <span class="county-map-overview-text">Click a county to view arrows</span> 
+
+  
+  <style>
+    #Ochiltree {
+      fill: #A92323 !important; /* Highlight color */
+      stroke: #FFFFFF !important;
+      stroke-width: 1.0px !important;
+    }
+  </style>
+</div>
+      </div>
+      <div id="mini-map-tooltip" class="map-tooltip-ui"></div>
+    
+
+    <div class="modal-overlay" id="greeting-modal-overlay">
+      <div class="modal-content" id="greeting-modal-content" role="dialog" aria-labelledby="greeting-modal-title" aria-modal="true">
+        <button class="modal-close-btn" id="greeting-modal-close-btn" aria-label="Close greeting message">&times;</button>
+        <img src="/img/arrow-logo.png"
+             alt="Quanah Parker Trail Arrow graphic"
+             class="modal-greeting-image">
+        <h2 id="greeting-modal-title">Welcome to the Quanah Parker Trail!</h2>
+        <p>
+          Explore the historical arrow markers commemorating Quanah Parker and the Comanche people across the Texas Plains Trail Region. Use the map on the homepage or navigate via the menu to learn more about this effort.
+        </p>
+      </div>
+    </div>
+
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.js"></script>
+
+    
+    <script>
+      window.siteBasePath = "/";
+      // console.log('Site Base Path for JS:', window.siteBasePath); // For debugging
+    </script>
+
+    
+    <script src="/js/greeting-modal.js"></script>
+    <script src="/js/mobile-menu.js"></script>
+    
+    
+    <script src="/js/mini-map-popup.js"></script>
+    
+    <script src="/js/collapsible-toc.js"></script>
+    <script src="/js/footer-scripts.js"></script>
+
+</body>
+</html>

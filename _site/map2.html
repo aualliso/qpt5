@@ -1,0 +1,1430 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quanah Parker Trail - Map</title> 
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/qjy2ghh.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.css"
+     type="text/css">
+
+</head>
+<body class=" "> 
+
+    
+<header class="site-main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="/">
+                
+                <img src="/img/qpt-seal-head-white.png" alt="Trail Arrow" class="logo-arrow">
+                <span class="logo-text">Quanah Parker Trail</span>
+            </a>
+        </div>
+        
+        <button class="menu-toggle" id="mobile-menu-toggle" aria-controls="main-navigation" aria-expanded="false">
+            <span class="sr-only">Toggle Menu</span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        
+        <nav class="main-nav" id="main-navigation">
+            <ul>
+                <li><a href="/">Home</a></li>
+                
+                
+                
+                <li><a href="/story.html">The Story</a></li>
+                <li><a href="/arrows.html">The Arrows</a></li>
+                <li><a href="/#people-section">The People</a></li>
+                
+                
+                <li><a href="/map.html">Map</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+        <body>
+    <div id="osm-map-all">
+    </div>
+    <script>
+        // Initialize the map
+        const map = L.map('osm-map-all', {
+            gestureHandling: true
+        }).setView([33.8, -100.7], 6); // Centered on the general TPTR area, adjust zoom as needed
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19, // Can go up to 19 for OSM
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, County data from local source'
+        }).addTo(map);
+        // --- 1. Define your Custom Arrow Icon ---
+        const arrowIcon = L.icon({
+            iconUrl: '/img/arrow-logo.png',       // ENSURE THIS PATH IS CORRECT (use Eleventy 'url' filter if script is in Nunjucks)
+            shadowUrl: '/img/arrow-logo-shadow.png', // ENSURE THIS PATH IS CORRECT
+            iconSize:     [30, 50],  // Actual pixel size of your icon image
+            shadowSize:   [55, 45],  // Actual pixel size of your shadow image
+            iconAnchor:   [15, 50],  // Point of the icon corresponding to marker's location (e.g., tip of arrow)
+            shadowAnchor: [39, 45],  // Point of the shadow that aligns with iconAnchor
+            popupAnchor:  [0, -45]   // Point from which the popup should open relative to iconAnchor
+        });
+        // --- 2. Data for your 88 Quanah Parker Trail Arrow Markers ---
+        // YOU WILL NEED TO POPULATE THIS ARRAY WITH ALL 88 MARKERS
+        // Structure for each marker object:
+        // {
+        //     lat: YOUR_LATITUDE (number),
+        //     lng: YOUR_LONGITUDE (number),
+        //     arrowNumber: "XX" (string or number),
+        //     name: "Marker Location Name/Description", (string)
+        //     address: "Street Address, City, TX", (string, optional)
+        //     installed: "Date or Year", (string, optional)
+        //     details: "Any other information for the popup.", (string, optional)
+        //     arrowPageUrl: "/arrows/XX.html" (string, optional, relative path to detail page)
+        // }
+        const quanahArrowData = [
+            // Example (replace with your actual data):
+    {
+        lat: 34.0149782,
+        lng: -100.8219809,
+        arrowNumber: "1",
+        arrowName: "Matador",
+        arrowCounty: "Motley",
+        markerText: "Quanah Parker spoke downtown, 1909 Matador Ranch hosted chief & wives other Comanches camped N of jail",
+        installed: "August 10, 2011",
+        dedicated: "October 15, 2012",
+        arrowPageUrl: `/arrows/1.html`,
+        arrowCountyUrl: `/motley.html`
+    },
+    {
+        lat: 33.6583061,
+        lng: -101.2329332,
+        arrowNumber: "2",
+        arrowName: "Crosbyton",
+        arrowCounty: "Crosby",
+        markerText: "Quanah Parker hunted in Blanco Canyon & with Comanches fought the U.S. Cavalry northeast of Crosbyton",
+        installed: "August 10, 2011",
+        dedicated: "July 31, 2012",
+        arrowPageUrl: `/arrows/2.html`,
+        arrowCountyUrl: `/crosby.html`
+    },
+    {
+        lat: 33.1759548,
+        lng: -102.2691735,
+        arrowNumber: "3",
+        arrowName: "Brownfield",
+        arrowCounty: "Terry",
+        markerText: "Circa 1900, Quanah Parker received calves from the Brownfields to stock herds and feed his tribe",
+        installed: "August 24, 2011",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/3.html`,
+        arrowCountyUrl: `/terry.html`
+    },
+    {
+        lat: 33.3397205,
+        lng: -102.2036667,
+        arrowNumber: "4",
+        arrowName: "Meadow",
+        arrowCounty: "Terry",
+        markerText: "None",
+        installed: "August 24, 2011",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/4.html`,
+        arrowCountyUrl: `/terry.html`
+    },
+    {
+        lat: 33.3375449,
+        lng: -102.2066808,
+        arrowNumber: "5",
+        arrowName: "Meadow",
+        arrowCounty: "Terry",
+        markerText: "None",
+        installed: "August 24, 2011",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/5.html`,
+        arrowCountyUrl: `/terry.html`
+    },
+    {
+        lat: 33.5842054,
+        lng: -99.7910346,
+        arrowNumber: "6",
+        arrowName: "Benjamin",
+        arrowCounty: "Knox",
+        markerText: "Comanches, Kiowas & Apaches used a well-marked trail over \"The Narrows\" that US 82/SH 114 follows today",
+        installed: "September 7, 2011",
+        dedicated: "October 14, 2012",
+        arrowPageUrl: `/arrows/6.html`,
+        arrowCountyUrl: `/knox.html`
+    },
+    {
+        lat: 33.9860583,
+        lng: -99.7252483,
+        arrowNumber: "7",
+        arrowName: "Crowell",
+        arrowCounty: "Foard",
+        markerText: "Quanah Parker and the Comanches camped near here on the Pease River and Cynthia Ann recaptured 8 mi NE",
+        installed: "September 7, 2011",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/7.html`,
+        arrowCountyUrl: `/foard.html`
+    },
+    {
+        lat: 34.2996273,
+        lng: -99.739346,
+        arrowNumber: "8",
+        arrowName: "Quanah",
+        arrowCounty: "Hardeman",
+        markerText: "The legendary Quanah Parker, railway icon and town namesake, blessed town of Quanah in 1890",
+        installed: "September 7, 2011",
+        dedicated: "September 8, 2011",
+        arrowPageUrl: `/arrows/8.html`,
+        arrowCountyUrl: `/hardeman.html`
+    },
+    {
+        lat: 33.4826538,
+        lng: -100.8561405,
+        arrowNumber: "9",
+        arrowName: "Spur",
+        arrowCounty: "Dickens",
+        markerText: "One of Quanah Parker's Comanche war bonnets is in the Spur-Dickens County Museum collection",
+        installed: "September 28, 2011",
+        dedicated: "July 31, 2012",
+        arrowPageUrl: `/arrows/9.html`,
+        arrowCountyUrl: `/dickens.html`
+    },
+    {
+        lat: 34.0138509,
+        lng: -100.2997313,
+        arrowNumber: "10",
+        arrowName: "Paducah",
+        arrowCounty: "Cottle",
+        markerText: "Quanah's tie to Paducahcousin Charlie Hart, Chore Boy, trusted Friend, & Burnetts' Ranch Manager",
+        installed: "September 28, 2011",
+        dedicated: "July 31, 2012",
+        arrowPageUrl: `/arrows/10.html`,
+        arrowCountyUrl: `/cottle.html`
+    },
+    {
+        lat: 33.1921656,
+        lng: -101.3838179,
+        arrowNumber: "11",
+        arrowName: "Post",
+        arrowCounty: "Garza",
+        markerText: "None",
+        installed: "November 8, 2011",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/11.html`,
+        arrowCountyUrl: `/garza.html`
+    },
+    {
+        lat: 33.1911172,
+        lng: -101.3571657,
+        arrowNumber: "12",
+        arrowName: "Post",
+        arrowCounty: "Garza",
+        markerText: "None",
+        installed: "November 8, 2011",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/12.html`,
+        arrowCountyUrl: `/garza.html`
+    },
+    {
+        lat: 32.9411281,
+        lng: -102.5629659,
+        arrowNumber: "13",
+        arrowName: "Seagraves",
+        arrowCounty: "Gaines",
+        markerText: "None",
+        installed: "December 14, 2011",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/13.html`,
+        arrowCountyUrl: `/gaines.html`
+    },
+    {
+        lat: 32.7195781,
+        lng: -102.6527727,
+        arrowNumber: "14",
+        arrowName: "Seminole",
+        arrowCounty: "Gaines",
+        markerText: "In honor of Quanah Parker, last Comanche Chief, who legend says was born at Cedar Lake circa 1852",
+        installed: "December 14, 2011",
+        dedicated: "October 20, 2012",
+        arrowPageUrl: `/arrows/14.html`,
+        arrowCountyUrl: `/gaines.html`
+    },
+    {
+        lat: 32.9653461,
+        lng: -102.8307954,
+        arrowNumber: "15",
+        arrowName: "Denver City",
+        arrowCounty: "Yoakum",
+        markerText: "Comanches & Kiowas hunted bison on Mckenzie Draw and camped at water sites in aeolian sands by Denver City",
+        installed: "December 14, 2011",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/15.html`,
+        arrowCountyUrl: `/yoakum.html`
+    },
+    {
+        lat: 33.1665615,
+        lng: -101.7974021,
+        arrowNumber: "16",
+        arrowName: "Tahoka",
+        arrowCounty: "Lynn",
+        markerText: "Lynn County's lakes and playas once were favorite campsites for Quanah Parker and nomadic Indians",
+        installed: "December 16, 2011",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/16.html`,
+        arrowCountyUrl: `/lynn.html`
+    },
+    {
+        lat: 32.9647607,
+        lng: -101.8328095,
+        arrowNumber: "17",
+        arrowName: "O'Donnell",
+        arrowCounty: "Lynn",
+        markerText: "Comanches traveling E/W on Tahoka Lake Trail camped in the canyons East of present-day O'Donnell",
+        installed: "December 16, 2011",
+        dedicated: "August 27, 2016",
+        arrowPageUrl: `/arrows/17.html`,
+        arrowCountyUrl: `/lynn.html`
+    },
+    {
+        lat: 35.1981688,
+        lng: -100.2490535,
+        arrowNumber: "18",
+        arrowName: "Shamrock",
+        arrowCounty: "Wheeler",
+        markerText: "The Comanche, Kiowa and Cheyenne camped at the North Fork of the Red River during their travels",
+        installed: "January 6, 2012",
+        dedicated: "September 20, 2013",
+        arrowPageUrl: `/arrows/18.html`,
+        arrowCountyUrl: `/wheeler.html`
+    },
+    {
+        lat: 35.4452966,
+        lng: -100.2758193,
+        arrowNumber: "19",
+        arrowName: "Wheeler",
+        arrowCounty: "Wheeler",
+        markerText: "Wheeler was in the heart of the buffalo hunting area for Kiowa, Comanche and Cheyenne Indians",
+        installed: "January 6, 2012",
+        dedicated: "September 20, 2013",
+        arrowPageUrl: `/arrows/19.html`,
+        arrowCountyUrl: `/wheeler.html`
+    },
+    {
+        lat: 35.5180112,
+        lng: -100.4572612,
+        arrowNumber: "20",
+        arrowName: "Mobeetie",
+        arrowCounty: "Wheeler",
+        markerText: "Near this site Sept 12 1874 Kiowas & Comanches fought Maj Wm R Price at the battle of Sweetwater Creek",
+        installed: "January 6, 2012",
+        dedicated: "September 20, 2013",
+        arrowPageUrl: `/arrows/20.html`,
+        arrowCountyUrl: `/wheeler.html`
+    },
+    {
+        lat: 32.2196372,
+        lng: -101.476968,
+        arrowNumber: "21",
+        arrowName: "Big Spring",
+        arrowCounty: "Howard",
+        markerText: "Comanches convened at Big Spring a destination water site landmark & crossroads on the Comanche Trail",
+        installed: "January 11, 2012",
+        dedicated: "November 16, 2017",
+        arrowPageUrl: `/arrows/21.html`,
+        arrowCountyUrl: `/howard.html`
+    },
+    {
+        lat: 35.531856,
+        lng: -102.260819,
+        arrowNumber: "22",
+        arrowName: "Old Tascosa-Boys Ranch",
+        arrowCounty: "Oldham",
+        markerText: "1786-1874 Comanches met Comancheros at Atascosa Creek to feast, gamble, race horses & exchange trade goods",
+        installed: "January 26, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/22.html`,
+        arrowCountyUrl: `/oldham.html`
+    },
+    {
+        lat: 36.0587861,
+        lng: -102.5248742,
+        arrowNumber: "23",
+        arrowName: "Dalhart",
+        arrowCounty: "Dallam",
+        markerText: "None",
+        installed: "January 26, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/23.html`, // This one already had the format
+        arrowCountyUrl: `/dallam.html`   // This one already had the format
+    },
+    {
+        lat: 32.9796591,
+        lng: -101.8295911,
+        arrowNumber: "24",
+        arrowName: "O'Donnell",
+        arrowCounty: "Lynn",
+        markerText: "Comanches ascended the High Plains at points NE and S of O'Donnell using Mooar's Draw and TJF Draw",
+        installed: "February 3, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/24.html`,
+        arrowCountyUrl: `/lynn.html`
+    },
+    {
+        lat: 33.1807554,
+        lng: -102.2749303,
+        arrowNumber: "25",
+        arrowName: "Brownfield",
+        arrowCounty: "Terry",
+        markerText: "None",
+        installed: "February 3, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/25.html`,
+        arrowCountyUrl: `/terry.html`
+    },
+    {
+        lat: 34.9594201,
+        lng: -100.2221764,
+        arrowNumber: "26",
+        arrowName: "Wellington",
+        arrowCounty: "Collingsworth",
+        markerText: "Comanches once hunted buffalo on Salt Fork of the Red & Buck Creek in present-day Collingsworth Co.",
+        installed: "February 10, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/26.html`,
+        arrowCountyUrl: `/collingsworth.html`
+    },
+    {
+        lat: 36.116986,
+        lng: -100.0312976,
+        arrowNumber: "27",
+        arrowName: "Higgins",
+        arrowCounty: "Lipscomb",
+        markerText: "Comanche Cheyenne & Kiowa Indians frequented E E Polly's Stations in era of the 1874 Red River War",
+        installed: "February 10, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/27.html`,
+        arrowCountyUrl: `/lipscomb.html`
+    },
+    {
+        lat: 36.2339038,
+        lng: -100.2756239,
+        arrowNumber: "28",
+        arrowName: "Lipscomb",
+        arrowCounty: "Lipscomb",
+        markerText: "Wolf Creek north of here provided a watering and camp site for Indian hunting parties",
+        installed: "February 10, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/28.html`,
+        arrowCountyUrl: `/lipscomb.html`
+    },
+    {
+        lat: 33.1670859,
+        lng: -101.9548094,
+        arrowNumber: "29",
+        arrowName: "Stud Duck Ranch",
+        arrowCounty: "Lynn",
+        markerText: "None",
+        installed: "February 6, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/29.html`,
+        arrowCountyUrl: `/lynn.html`
+    },
+    {
+        lat: 34.5362977,
+        lng: -101.7718295,
+        arrowNumber: "30",
+        arrowName: "Tulia",
+        arrowCounty: "Swisher",
+        markerText: "Quanah Parker's peyote blanket and other Indian artifacts are part of Swisher County's Museum collection",
+        installed: "April 20, 2012",
+        dedicated: "July 21, 2012",
+        arrowPageUrl: `/arrows/30.html`,
+        arrowCountyUrl: `/swisher.html`
+    },
+    {
+        lat: 34.5248182,
+        lng: -101.7630874,
+        arrowNumber: "31",
+        arrowName: "Tulia",
+        arrowCounty: "Swisher",
+        markerText: "Comanche and other Indian tribes camped and hunted along the Tule Creek",
+        installed: "April 20, 2012",
+        dedicated: "July 21, 2012",
+        arrowPageUrl: `/arrows/31.html`,
+        arrowCountyUrl: `/swisher.html`
+    },
+    {
+        lat: 34.5637509,
+        lng: -101.7227328,
+        arrowNumber: "32",
+        arrowName: "Tulia",
+        arrowCounty: "Swisher",
+        markerText: "Comanche and other Indian tribes camped near natural springs to the east and nearby playa lakes",
+        installed: "April 20, 2012",
+        dedicated: "July 21, 2012",
+        arrowPageUrl: `/arrows/32.html`,
+        arrowCountyUrl: `/swisher.html`
+    },
+    {
+        lat: 32.7424857,
+        lng: -101.9521189,
+        arrowNumber: "33",
+        arrowName: "Lamesa",
+        arrowCounty: "Dawson",
+        markerText: "Comanches ruled the upper Colorado River & headwaters originating in Dawson County from ca 1700 to 1874",
+        installed: "May 9, 2012",
+        dedicated: "October 10, 2019",
+        arrowPageUrl: `/arrows/33.html`,
+        arrowCountyUrl: `/dawson.html`
+    },
+    {
+        lat: 32.4083495,
+        lng: -100.8752312,
+        arrowNumber: "34",
+        arrowName: "Colorado City",
+        arrowCounty: "Mitchell",
+        markerText: "Comanche, Kiowa & Indians before them hunted bison here in the heart of Colorado River headwaters",
+        installed: "May 11, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/34.html`,
+        arrowCountyUrl: `/mitchell.html`
+    },
+    {
+        lat: 34.4769535,
+        lng: -101.5353528,
+        arrowNumber: "35",
+        arrowName: "Tule Canyon",
+        arrowCounty: "Swisher",
+        markerText: "Quanah Parker never forgot that near this site Sept 29, 1874 the U.S. Army shot 1,048 Indian horses",
+        installed: "June 15, 2012",
+        dedicated: "July 21, 2012",
+        arrowPageUrl: `/arrows/35.html`,
+        arrowCountyUrl: `/swisher.html`
+    },
+    {
+        lat: 35.6722998,
+        lng: -101.3897064,
+        arrowNumber: "36",
+        arrowName: "Borger",
+        arrowCounty: "Hutchinson",
+        markerText: "Battles at Adobe Walls near hereComanches & allied tribes 1864 Quanah Parker and allied tribes 1874",
+        installed: "June 15, 2012",
+        dedicated: "September 28, 2012",
+        arrowPageUrl: `/arrows/36.html`,
+        arrowCountyUrl: `/hutchinson.html`
+    },
+    {
+        lat: 34.985446,
+        lng: -101.7092527,
+        arrowNumber: "37",
+        arrowName: "Canyon",
+        arrowCounty: "Randall",
+        markerText: "The Comanches called Palo Duro Canyon \"Prairie Dog\" --sanctuary and home to Indians for many millennia",
+        installed: "June 15, 2012",
+        dedicated: "June 27, 2015",
+        arrowPageUrl: `/arrows/37.html`,
+        arrowCountyUrl: `/randall.html`
+    },
+    {
+        lat: 33.5854936,
+        lng: -101.8241339,
+        arrowNumber: "38",
+        arrowName: "Lubbock",
+        arrowCounty: "Lubbock",
+        markerText: "Comanche hunters traded bison meat for N.M. Indian corn carted to Yellow House Canyon by Comancheros 1786-1875 Nomadic Indians gathered for food plants native to Yellow House Canyon hackberry * plum * grape * cactus fruit",
+        installed: "July 12, 2012",
+        dedicated: "September 16, 2016",
+        arrowPageUrl: `/arrows/38.html`,
+        arrowCountyUrl: `/lubbock.html`
+    },
+    {
+        lat: 33.1888725,
+        lng: -102.8289679,
+        arrowNumber: "39",
+        arrowName: "Plains",
+        arrowCounty: "Yoakum",
+        markerText: "Comanches hunting bison followed Sulphur Springs Draw and camped by the springs near Plains",
+        installed: "August 2, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/39.html`,
+        arrowCountyUrl: `/yoakum.html`
+    },
+    {
+        lat: 33.6596468,
+        lng: -101.2388812,
+        arrowNumber: "40",
+        arrowName: "Crosbyton",
+        arrowCounty: "Crosby",
+        markerText: "None",
+        installed: "November 20, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/40.html`,
+        arrowCountyUrl: `/crosby.html`
+    },
+    {
+        lat: 33.8918526,
+        lng: -101.3583848,
+        arrowNumber: "41",
+        arrowName: "Floydada",
+        arrowCounty: "Floyd",
+        markerText: "None",
+        installed: "November 20, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/41.html`,
+        arrowCountyUrl: `/floyd.html`
+    },
+    {
+        lat: 34.6365512,
+        lng: -102.7208876,
+        arrowNumber: "42",
+        arrowName: "Friona",
+        arrowCounty: "Parmer",
+        markerText: "None",
+        installed: "November 27, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/42.html`,
+        arrowCountyUrl: `/parmer.html`
+    },
+    {
+        lat: 34.8221818,
+        lng: -102.3963347,
+        arrowNumber: "43",
+        arrowName: "Hereford",
+        arrowCounty: "Deaf Smith",
+        markerText: "Comanches & Kiowas hunted summer and fall in this area due to its good water, tall grass & wild game",
+        installed: "November 27, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/43.html`,
+        arrowCountyUrl: `/deaf-smith.html`
+    },
+    {
+        lat: 34.8178642,
+        lng: -102.3975528,
+        arrowNumber: "44",
+        arrowName: "Hereford",
+        arrowCounty: "Deaf Smith",
+        markerText: "Comanches, Kiowas & other Indians left tipi rings & arrowheads near Tierra Blanca & Palo Duro Creeks",
+        installed: "November 27, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/44.html`,
+        arrowCountyUrl: `/deaf-smith.html`
+    },
+    {
+        lat: 34.3926507,
+        lng: -100.9004759,
+        arrowNumber: "45",
+        arrowName: "Turkey",
+        arrowCounty: "Hall",
+        markerText: "None",
+        installed: "December 5, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/45.html`,
+        arrowCountyUrl: `/hall.html`
+    },
+    {
+        lat: 34.7203483,
+        lng: -100.5306311,
+        arrowNumber: "46",
+        arrowName: "Memphis",
+        arrowCounty: "Hall",
+        markerText: "Quanah Parker & Comanches used Field's Crossing over Prairie Dog Town Fork of Red River by Memphis",
+        installed: "December 5, 2012",
+        dedicated: "September 21, 2013",
+        arrowPageUrl: `/arrows/46.html`,
+        arrowCountyUrl: `/hall.html`
+    },
+    {
+        lat: 35.9233218,
+        lng: -100.3767383,
+        arrowNumber: "47",
+        arrowName: "Canadian",
+        arrowCounty: "Hemphill",
+        markerText: "Peta Nocona died of old war wound while picking wild plums on Canadian River; buried in Antelope Hills, c. 1863",
+        installed: "December 5, 2012",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/47.html`,
+        arrowCountyUrl: `/hemphill.html`
+    },
+    {
+        lat: 33.9551932,
+        lng: -102.7769412,
+        arrowNumber: "48",
+        arrowName: "Muleshoe Wildlife Refuge",
+        arrowCounty: "Bailey",
+        markerText: "1877 Quanah led Red Young Man's band thru this area, known for abundant game at Paul's, White & Goose Lakes",
+        installed: "January 18, 2013",
+        dedicated: "September 17, 2016",
+        arrowPageUrl: `/arrows/48.html`,
+        arrowCountyUrl: `/bailey.html`
+    },
+    {
+        lat: 34.2385601,
+        lng: -102.7469183,
+        arrowNumber: "49",
+        arrowName: "Muleshoe",
+        arrowCounty: "Bailey",
+        markerText: "Quanah and the Comanche followed Blackwater Draw, an ancient trail the wind erased through time",
+        installed: "January 18, 2013",
+        dedicated: "September 17, 2016",
+        arrowPageUrl: `/arrows/49.html`,
+        arrowCountyUrl: `/bailey.html`
+    },
+    {
+        lat: 33.5815007,
+        lng: -102.3776916,
+        arrowNumber: "50",
+        arrowName: "Levelland",
+        arrowCounty: "Hockley",
+        markerText: "None",
+        installed: "March 15, 2013",
+        dedicated: "August 26, 2016",
+        arrowPageUrl: `/arrows/50.html`,
+        arrowCountyUrl: `/hockley.html`
+    },
+    {
+        lat: 33.7234793,
+        lng: -102.7607788,
+        arrowNumber: "51",
+        arrowName: "Morton",
+        arrowCounty: "Cochran",
+        markerText: "In Blue Sand Hills, Quanah Parker persuaded reluctant Comanches to Return to Ft. Sill in peace, 1877",
+        installed: "March 15, 2013",
+        dedicated: "September 17, 2016",
+        arrowPageUrl: `/arrows/51.html`,
+        arrowCountyUrl: `/cochran.html`
+    },
+    {
+        lat: 33.7866155,
+        lng: -102.4606585,
+        arrowNumber: "52",
+        arrowName: "Yellow House Ranch",
+        arrowCounty: "Hockley",
+        markerText: "None",
+        installed: "April 24, 2014",
+        dedicated: "August 26, 2016",
+        arrowPageUrl: `/arrows/52.html`,
+        arrowCountyUrl: `/hockley.html`
+    },
+    {
+        lat: 35.3386486,
+        lng: -101.3789644,
+        arrowNumber: "53",
+        arrowName: "Panhandle",
+        arrowCounty: "Carson",
+        markerText: "Quanah Parker, Comanche chief, honored in Red River War exhibit Carson County Square House Museum",
+        installed: "May 17, 2013",
+        dedicated: "September 21, 2013",
+        arrowPageUrl: `/arrows/53.html`,
+        arrowCountyUrl: `/carson.html`
+    },
+    {
+        lat: 34.9269417,
+        lng: -100.8859496,
+        arrowNumber: "54",
+        arrowName: "Clarendon",
+        arrowCounty: "Donley",
+        markerText: "Quanah Parker & Charles Goodnight shared mutual respect, reflected in letters at Saints' Roost Museum",
+        installed: "May 17, 2013",
+        dedicated: "September 28, 2013",
+        arrowPageUrl: `/arrows/54.html`,
+        arrowCountyUrl: `/donley.html`
+    },
+    {
+        lat: 35.0314777,
+        lng: -101.1836876,
+        arrowNumber: "55",
+        arrowName: "Charles and Mary Ann Goodnight Ranch State Historic Site",
+        arrowCounty: "Armstrong",
+        markerText: "The legacy of Quanah Parker and Charles Goodnight is that former enemies can become good friends",
+        installed: "May 17, 2013",
+        dedicated: "September 12, 2013",
+        arrowPageUrl: `/arrows/55.html`,
+        arrowCountyUrl: `/armstrong.html`
+    },
+    {
+        lat: 34.1809118,
+        lng: -101.7153328,
+        arrowNumber: "56",
+        arrowName: "Plainview",
+        arrowCounty: "Hale",
+        markerText: "Quanah Parker and the Comanches frequented Running Water Draw and the hackberry grove nearby",
+        installed: "June 6, 2013",
+        dedicated: "July 4, 2013",
+        arrowPageUrl: `/arrows/56.html`,
+        arrowCountyUrl: `/hale.html`
+    },
+    {
+        lat: 33.8312937,
+        lng: -101.8429482,
+        arrowNumber: "57",
+        arrowName: "Abernathy",
+        arrowCounty: "Hale",
+        markerText: "The Comanches and other tribes traveled Blackwater Draw, 3 miles west of Abernathy, through 1874",
+        installed: "June 6, 2013",
+        dedicated: "July 4, 2013",
+        arrowPageUrl: `/arrows/57.html`,
+        arrowCountyUrl: `/hale.html`
+    },
+    {
+        lat: 34.4744257,
+        lng: -101.3140004,
+        arrowNumber: "58",
+        arrowName: "Silverton",
+        arrowCounty: "Briscoe",
+        markerText: "Comanches & their allies skirmished with Col. R. S. Mackenzie's 4th cavalry west of Silverton, Sept. 26-27, 1874",
+        installed: "June 14, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/58.html`,
+        arrowCountyUrl: `/briscoe.html`
+    },
+    {
+        lat: 34.4213928,
+        lng: -101.1525338,
+        arrowNumber: "59",
+        arrowName: "Silverton",
+        arrowCounty: "Briscoe",
+        markerText: "Comanche guides led early explorers Pedro Vial, Jose Mares & Francisco Armangual through this area 1787-1808",
+        installed: "June 14, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/59.html`,
+        arrowCountyUrl: `/briscoe.html`
+    },
+    {
+        lat: 34.3657577,
+        lng: -101.0448476,
+        arrowNumber: "60",
+        arrowName: "Quitaque",
+        arrowCounty: "Briscoe",
+        markerText: "Comanches traded with Comancheros SW in the Valley of Tears between Los Lingos and Cottonwood Creeks",
+        installed: "June 14, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/60.html`,
+        arrowCountyUrl: `/briscoe.html`
+    },
+    {
+        lat: 33.9109395,
+        lng: -102.3269202,
+        arrowNumber: "61",
+        arrowName: "Littlefield",
+        arrowCounty: "Lamb",
+        markerText: "None",
+        installed: "July 2, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/61.html`,
+        arrowCountyUrl: `/lamb.html`
+    },
+    {
+        lat: 34.1819261,
+        lng: -102.1347788,
+        arrowNumber: "62",
+        arrowName: "Olton",
+        arrowCounty: "Lamb",
+        markerText: "In 1877, Comanches hunting for bison skirmished with buffalo hunters and retreated to sand hills S. of Olton",
+        installed: "July 2, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/62.html`,
+        arrowCountyUrl: `/lamb.html`
+    },
+    {
+        lat: 34.0801098,
+        lng: -102.3248905,
+        arrowNumber: "63",
+        arrowName: "Rocky Ford",
+        arrowCounty: "Lamb",
+        markerText: "None",
+        installed: "July 2, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/63.html`,
+        arrowCountyUrl: `/lamb.html`
+    },
+    {
+        lat: 34.2331752,
+        lng: -102.4101562,
+        arrowNumber: "64",
+        arrowName: "Earth",
+        arrowCounty: "Lamb",
+        markerText: "Comanches followed Blackwater Draw to camp by spring-fed Spring Lake and hunt in the sand hills south of Earth",
+        installed: "July 2, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/64.html`,
+        arrowCountyUrl: `/lamb.html`
+    },
+    {
+        lat: 34.0672687,
+        lng: -102.5243412,
+        arrowNumber: "65",
+        arrowName: "Sudan",
+        arrowCounty: "Lamb",
+        markerText: "Comanches used lush grassland in Sudan area as waypoint for trading horses & cattle with Comancheros",
+        installed: "July 2, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/65.html`,
+        arrowCountyUrl: `/lamb.html`
+    },
+    {
+        lat: 36.3344722,
+        lng: -102.0711545,
+        arrowNumber: "66",
+        arrowName: "Stratford",
+        arrowCounty: "Sherman",
+        markerText: "The Yamparikas, largest Comanche band, followed streams through this area to the Canadian River",
+        installed: "July 26, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/66.html`,
+        arrowCountyUrl: `/sherman.html`
+    },
+    {
+        lat: 35.6858479,
+        lng: -102.3318194,
+        arrowNumber: "67",
+        arrowName: "Channing",
+        arrowCounty: "Hartley",
+        markerText: "None",
+        installed: "July 26, 2013",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/67.html`,
+        arrowCountyUrl: `/hartley.html`
+    },
+    {
+        lat: 33.2582046,
+        lng: -100.5750891,
+        arrowNumber: "68",
+        arrowName: "Jayton",
+        arrowCounty: "Kent",
+        markerText: "Comanches travelled trails in Kent Co., NE to Croton Salt, S to old Mexico and to evade U.S. Cavalry",
+        installed: "October 4, 2013",
+        dedicated: "October 11, 2014",
+        arrowPageUrl: `/arrows/68.html`,
+        arrowCountyUrl: `/kent.html`
+    },
+    {
+        lat: 32.7167507,
+        lng: -100.9185568,
+        arrowNumber: "69",
+        arrowName: "Snyder",
+        arrowCounty: "Scurry",
+        markerText: "Stories say Quanah Parker camped in Scurry County when he eloped with wife Weckeah to Concho River",
+        installed: "October 4, 2013",
+        dedicated: "October 5, 2013",
+        arrowPageUrl: `/arrows/69.html`,
+        arrowCountyUrl: `/scurry.html`
+    },
+    {
+        lat: 35.693984,
+        lng: -100.6342933,
+        arrowNumber: "70",
+        arrowName: "Miami",
+        arrowCounty: "Roberts",
+        markerText: "In the 1800s, Comanche, Kiowa, and other tribes camped along nearby Red Deer Creek, north of this site",
+        installed: "October 29, 2013",
+        dedicated: "November 15, 2013",
+        arrowPageUrl: `/arrows/70.html`,
+        arrowCountyUrl: `/roberts.html`
+    },
+    {
+        lat: 35.2347752,
+        lng: -101.9390836,
+        arrowNumber: "71",
+        arrowName: "Wildcat Bluff",
+        arrowCounty: "Potter",
+        markerText: "Indians hunting bison for centuries established Tascosa Trail nearby, used by traders and buffalo hunters",
+        installed: "November 2, 2013",
+        dedicated: "November 2, 2013",
+        arrowPageUrl: `/arrows/71.html`,
+        arrowCountyUrl: `/potter.html`
+    },
+    {
+        lat: 32.7690509,
+        lng: -101.452073,
+        arrowNumber: "72",
+        arrowName: "Gail",
+        arrowCounty: "Borden",
+        markerText: "1875, war chief Quanah Parker led free-roving Kwahada Comanches to their last camp near Bull Creek",
+        installed: "May 24, 2014",
+        dedicated: "June 11, 2016",
+        arrowPageUrl: `/arrows/72.html`,
+        arrowCountyUrl: `/borden.html`
+    },
+    {
+        lat: 34.7927717,
+        lng: -101.5455515,
+        arrowNumber: "73",
+        arrowName: "Wayside",
+        arrowCounty: "Armstrong",
+        markerText: "1874 the Comanche, Kiowa & Cheyenne fought Col Mackenzie & 4th Cavalry Palo Duro Canyon 6 mi NW of Wayside",
+        installed: "June 10, 2014",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/73.html`,
+        arrowCountyUrl: `/armstrong.html`
+    },
+    {
+        lat: 33.8605237,
+        lng: -100.8604477,
+        arrowNumber: "74",
+        arrowName: "Roaring Springs",
+        arrowCounty: "Motley",
+        markerText: "Comanche guides led JJ Sturm here, a favored campsite, seeking Quanah but finding Chief Blackbeard, 1875",
+        installed: "June 10, 2014",
+        dedicated: "April 16, 2015",
+        arrowPageUrl: `/arrows/74.html`,
+        arrowCountyUrl: `/motley.html`
+    },
+    {
+        lat: 34.4309366,
+        lng: -100.202932,
+        arrowNumber: "75",
+        arrowName: "Childress",
+        arrowCounty: "Childress",
+        markerText: "Quanah Parker & Comanches camped here at Childress Springs when traveling N/S trail, now U.S. 83",
+        installed: "July 18, 2014",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/75.html`,
+        arrowCountyUrl: `/childress.html`
+    },
+    {
+        lat: 35.2460258,
+        lng: -102.4280873,
+        arrowNumber: "76",
+        arrowName: "Vega",
+        arrowCounty: "Oldham",
+        markerText: "Comanches camped at playa lakes here, traveling trail N to Tascosa & E/W to Tecovas Springs & Tucumcari",
+        installed: "August 5, 2014",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/76.html`,
+        arrowCountyUrl: `/oldham.html`
+    },
+    {
+        lat: 35.5258411,
+        lng: -100.9777422,
+        arrowNumber: "77",
+        arrowName: "Pampa",
+        arrowCounty: "Gray",
+        markerText: "1872-74, Comanche, Kiowa & Cheyenne fought U.S. Army in series of battles on lands in present-day Gray County",
+        installed: "August 7, 2014",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/77.html`,
+        arrowCountyUrl: `/gray.html`
+    },
+    {
+        lat: 35.5348428,
+        lng: -100.9606196,
+        arrowNumber: "78",
+        arrowName: "Pampa",
+        arrowCounty: "Gray",
+        markerText: "Comanche, Kiowa & Cheyenne fought Red River War battles near here, seen in White Deer Land Museum exhibit",
+        installed: "August 7, 2014",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/78.html`,
+        arrowCountyUrl: `/gray.html`
+    },
+    {
+        lat: 35.2332806,
+        lng: -100.609129,
+        arrowNumber: "79",
+        arrowName: "McLean",
+        arrowCounty: "Gray",
+        markerText: "Comanche & other tribes followed Old Trails Ridge that became mail route, railroad, Route 66 & I-40",
+        installed: "August 7, 2014",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/79.html`,
+        arrowCountyUrl: `/gray.html`
+    },
+    {
+        lat: 34.5507047,
+        lng: -102.3115035,
+        arrowNumber: "80",
+        arrowName: "Dimmitt",
+        arrowCounty: "Castro",
+        markerText: "Comanches used Running Water & Frio Draws in this area as trailways for hunting and trade with Comancheros",
+        installed: "August 29, 2014",
+        dedicated: "September 6, 2014",
+        arrowPageUrl: `/arrows/80.html`,
+        arrowCountyUrl: `/castro.html`
+    },
+    {
+        lat: 36.1982586,
+        lng: -101.1962326,
+        arrowNumber: "81",
+        arrowName: "Spearman",
+        arrowCounty: "Hansford",
+        markerText: "None",
+        installed: "March 17, 2015",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/81.html`,
+        arrowCountyUrl: `/hansford.html`
+    },
+    {
+        lat: 33.2588336,
+        lng: -101.7475026,
+        arrowNumber: "82",
+        arrowName: "Tahoka Lake Pasture",
+        arrowCounty: "Lynn",
+        markerText: "1939 Quanah's son Baldwin visited and said Comanche elders recalled fresh water at their Tahoka Lake campsite",
+        installed: "March 18, 2016",
+        dedicated: "August 27, 2016",
+        arrowPageUrl: `/arrows/82.html`,
+        arrowCountyUrl: `/lynn.html`
+    },
+    {
+        lat: 33.6199203,
+        lng: -100.3244985,
+        arrowNumber: "83",
+        arrowName: "Guthrie",
+        arrowCounty: "King",
+        markerText: "Quanah & Comanches camped c. 1860 at Guthrie & traveled N/S on Indian trail passing twin knobs 1 mi. south",
+        installed: "May 4, 2016",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/83.html`,
+        arrowCountyUrl: `/king.html`
+    },
+    {
+        lat: 33.8072345,
+        lng: -102.1637231,
+        arrowNumber: "84",
+        arrowName: "Anton",
+        arrowCounty: "Hockley",
+        markerText: "None",
+        installed: "May 6, 2016",
+        dedicated: "August 26, 2016",
+        arrowPageUrl: `/arrows/84.html`,
+        arrowCountyUrl: `/hockley.html`
+    },
+    {
+        lat: 33.5910245,
+        lng: -101.8839993,
+        arrowNumber: "85",
+        arrowName: "Lubbock",
+        arrowCounty: "Lubbock",
+        markerText: "None",
+        installed: "October 3, 2016",
+        dedicated: "October 8, 2016",
+        arrowPageUrl: `/arrows/85.html`,
+        arrowCountyUrl: `/lubbock.html`
+    },
+    {
+        lat: 35.8424056,
+        lng: -101.9724026,
+        arrowNumber: "86",
+        arrowName: "Dumas",
+        arrowCounty: "Moore",
+        markerText: "Comanche, Kiowa & Indians before them camped 6 miles SE of Dumas by springs that fed Big Blue Creek",
+        installed: "November 2, 2016",
+        dedicated: "December 18, 2017",
+        arrowPageUrl: `/arrows/86.html`,
+        arrowCountyUrl: `/moore.html`
+    },
+    {
+        lat: 33.3264677,
+        lng: -101.9125109,
+        arrowNumber: "88", // Note: No 87 in this sample data
+        arrowName: "New Home",
+        arrowCounty: "Lynn",
+        markerText: "None",
+        installed: "None",
+        dedicated: "None",
+        arrowPageUrl: `/arrows/88.html`,
+        arrowCountyUrl: `/lynn.html`
+    }
+];
+            // --- PASTE YOUR OTHER 86 ARROW DATA OBJECTS HERE ---
+        // --- 3. List of the 54 County Names for your Target Region ---
+        const targetCountyNames = [
+            "Armstrong", "Bailey", "Borden", "Briscoe", "Carson", "Castro", "Childress",
+            "Cochran", "Collingsworth", "Cottle", "Crosby", "Dallam", "Dawson",
+            "Deaf Smith", "Dickens", "Donley", "Floyd", "Foard", "Gaines",
+            "Garza", "Gray", "Hale", "Hall", "Hansford", "Hardeman", "Hartley",
+            "Hemphill", "Howard", "Hockley", "Hutchinson", "Kent", "King", "Knox",
+            "Lamb", "Lipscomb", "Lubbock", "Lynn", "Mitchell", "Moore", "Motley", "Ochiltree",
+            "Oldham", "Parmer", "Potter", "Randall", "Roberts", "Scurry", "Sherman",
+            "Swisher", "Terry", "Wheeler", "Yoakum"
+        ];
+        // --- 4. Feature Groups to Manage Layers ---
+        const countyLayerGroup = L.featureGroup().addTo(map);
+        const arrowMarkersLayerGroup = L.featureGroup().addTo(map);
+        // --- 5. Load and Display County GeoJSON Data ---
+        // Ensure 'texascounties.json' is accessible at this path relative to your HTML,
+        // or use the Eleventy `url` filter if this script is processed by Nunjucks.
+        const geoJsonUrl = '/data/plainstrailcounties2.json'; // Example for Eleventy in /data/
+                                                                     // Or: './data/texascounties.json' or './texascounties.json'
+        fetch(geoJsonUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok for ${geoJsonUrl}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Texas County GeoJSON data loaded successfully.");
+                L.geoJSON(data, {
+                    filter: function(feature) {
+                        // Your texascounties.json uses lowercase 'statefp' and 'name' properties
+                        if (feature.properties && feature.properties.statefp === '48') {
+                            return targetCountyNames.includes(feature.properties.name);
+                        }
+                        return false;
+                    },
+                    style: function(feature) {
+                        return { // Style for the county polygons
+                            color: '#004E89',       // Border color
+                            weight: 2,
+                            opacity: 0.5,
+                            fillColor: '#004E89',    // Fill color
+                            fillOpacity: 0.3
+                        };
+                    },
+                    onEachFeature: function(feature, layer) {
+                        let popupContentHtml = '';
+                        if (feature.properties && feature.properties.name) {
+                            popupContentHtml += `<div class="qpt-popup-title">${feature.properties.name} County</div>`;
+                            // You can add more info from feature.properties here if needed
+                            popupContentHtml += `<div class="qpt-popup-details"><p>${feature.properties.name} County is part of the Texas Plains Trail Region.</p></div>`;
+                        }
+                        if (popupContentHtml) {
+                            layer.bindPopup(popupContentHtml);
+                        }
+                        countyLayerGroup.addLayer(layer);
+                    }
+                }); // No .addTo(map) needed here as individual layers are added to countyLayerGroup
+                console.log(`Filtered and added ${countyLayerGroup.getLayers().length} counties.`);
+                fitMapToAllFeatures(); // Fit bounds after counties are processed
+            })
+            .catch(error => {
+                console.error('Error loading or processing GeoJSON for counties:', error);
+                // Still try to fit to markers if counties fail
+                fitMapToAllFeatures();
+            });
+        // --- 6. Add Arrow Markers to the Map ---
+        if (quanahArrowData && quanahArrowData.length > 0) {
+            console.log(`Processing ${quanahArrowData.length} arrow markers...`);
+            quanahArrowData.forEach(arrow => {
+                if (typeof arrow.lat !== 'number' || typeof arrow.lng !== 'number') {
+                    console.warn(`Skipping arrow "${arrow.name || 'Unknown'}" due to invalid lat/lng.`);
+                    return; // Skip this iteration if lat/lng are invalid
+                }
+                const marker = L.marker([arrow.lat, arrow.lng], { icon: arrowIcon });
+                let popupHtml = `<div class="qpt-popup-title">Arrow ${arrow.arrowNumber || 'N/A'}: ${arrow.arrowName || 'Quanah Parker Trail Arrow'}</div>`;
+                popupHtml += `<div class="qpt-popup-details">`;
+                if (arrow.arrowCounty) popupHtml += `<p><strong>County:</strong> <a href="${arrow.arrowCountyUrl}" rel="noopener noreferrer">${arrow.arrowCounty}</a></p>`;
+                if (arrow.installed) popupHtml += `<p><strong>Installed:</strong> ${arrow.installed}</p>`;
+                if (arrow.dedicated) popupHtml += `<p><strong>Dedicated:</strong> ${arrow.dedicated}</p>`;
+                if (arrow.markerText) popupHtml += `<p><strong>Marker Text:</strong> ${arrow.markerText}</p>`;
+                if (arrow.details) popupHtml += `<p>${arrow.details}</p>`;
+                if (arrow.arrowPageUrl) { // Check if arrowPageUrl exists
+                    popupHtml += `<a href="${arrow.arrowPageUrl}" class="qpt-popup-link" rel="noopener noreferrer">More Details</a>`;
+                if (arrow.lat)
+                    popupHtml += `<br><a href="https://www.google.com/maps/dir/?api=1&destination=${arrow.lat}, ${arrow.lng}" class="qpt-popup-link" rel="noopener noreferrer">Navigate</a>`;
+                }
+                popupHtml += `</div>`;
+                marker.bindPopup(popupHtml);
+                arrowMarkersLayerGroup.addLayer(marker);
+            });
+            console.log("Finished processing arrow markers.");
+        } else {
+            console.warn("quanahArrowData array is empty or not defined. No arrow markers will be added.");
+        }
+        // --- 7. Function to Fit Map Bounds to All Loaded Features ---
+        function fitMapToAllFeatures() {
+            const layersToConsider = [];
+            if (countyLayerGroup.getLayers().length > 0) {
+                layersToConsider.push(countyLayerGroup);
+            }
+            if (arrowMarkersLayerGroup.getLayers().length > 0) {
+                layersToConsider.push(arrowMarkersLayerGroup);
+            }
+            if (layersToConsider.length > 0) {
+                const combinedBounds = L.featureGroup(layersToConsider).getBounds();
+                if (combinedBounds.isValid()) {
+                    console.log("Fitting map to all loaded features.");
+                    map.fitBounds(combinedBounds.pad(0.05)); // Small padding
+                } else {
+                    console.warn("Could not determine valid combined bounds to fit the map. Using default view.");
+                    map.setView([33.8, -100.7], 6);
+                }
+            } else {
+                console.warn("No features (counties or markers) loaded to fit map bounds. Using default view.");
+                map.setView([33.8, -100.7], 6);
+            }
+        }
+        // Initial fit attempt (mainly for markers if county data is slow or fails)
+        if (arrowMarkersLayerGroup.getLayers().length > 0) {
+            fitMapToAllFeatures();
+        }
+        // --- 8. Ensure Map Size is Correct After Everything ---
+        window.addEventListener('load', function() {
+            if (map) {
+                console.log('Window fully loaded, invalidating map size for final adjustments.');
+                map.invalidateSize();
+                // Call fitMapToAllFeatures again, as all async operations (like county loading)
+                // and layout adjustments (images/fonts) should be complete.
+                fitMapToAllFeatures();
+            }
+        });
+    </script>
+</body>
+    </main>
+
+    
+    <footer class="site-footer">
+        <div class="scrolling-banner-container">
+            <div class="scrolling-banner-track">
+                <span>Matador</span><span>&bull;</span>
+                <span>Crosbyton</span><span>&bull;</span>
+                <span>Brownfield</span><span>&bull;</span>
+                <span>Meadow</span><span>&bull;</span>
+                <span>Benjamin</span><span>&bull;</span>
+                <span>Crowell</span><span>&bull;</span>
+                <span>Quanah</span><span>&bull;</span>
+                <span>Spur</span><span>&bull;</span>
+                <span>Paducah</span><span>&bull;</span>
+                <span>Post</span><span>&bull;</span>
+                <span>Seagraves</span><span>&bull;</span>
+                <span>Seminole</span><span>&bull;</span>
+                <span>Denver City</span><span>&bull;</span>
+                <span>Tahoka</span><span>&bull;</span>
+                <span>O'Donnell</span><span>&bull;</span>
+                <span>Shamrock</span><span>&bull;</span>
+                <span>Wheeler</span><span>&bull;</span>
+                <span>Mobeetie</span><span>&bull;</span>
+                <span>Big Spring</span><span>&bull;</span>
+                <span>Old Tascosa-Boys Ranch</span><span>&bull;</span>
+                <span>Dalhart</span><span>&bull;</span>
+                <span>O'Donnell</span><span>&bull;</span>
+                <span>Brownfield</span><span>&bull;</span>
+                <span>Wellington</span><span>&bull;</span>
+                <span>Higgins</span><span>&bull;</span>
+                <span>Lipscomb</span><span>&bull;</span>
+                <span>Stud Duck Ranch</span><span>&bull;</span>
+                <span>Tulia</span><span>&bull;</span>
+                <span>Lamesa</span><span>&bull;</span>
+                <span>Colorado City</span><span>&bull;</span>
+                <span>Tule Canyon</span><span>&bull;</span>
+                <span>Borger</span><span>&bull;</span>
+                <span>Canyon</span><span>&bull;</span>
+                <span>Lubbock</span><span>&bull;</span>
+                <span>Plains</span><span>&bull;</span>
+                <span>Crosbyton</span><span>&bull;</span>
+                <span>Floydada</span><span>&bull;</span>
+                <span>Friona</span><span>&bull;</span>
+                <span>Hereford</span><span>&bull;</span>
+                <span>Turkey</span><span>&bull;</span>
+                <span>Memphis</span><span>&bull;</span>
+                <span>Canadian</span><span>&bull;</span>
+                <span>Muleshoe Wildlife Refuge</span><span>&bull;</span>
+                <span>Muleshoe</span><span>&bull;</span>
+                <span>Levelland</span><span>&bull;</span>
+                <span>Morton</span><span>&bull;</span>
+                <span>Yellow House Ranch</span><span>&bull;</span>
+                <span>Panhandle</span><span>&bull;</span>
+                <span>Clarendon</span><span>&bull;</span>
+                <span>Charles and Mary Ann Goodnight Ranch State Historic Site</span><span>&bull;</span>
+                <span>Plainview</span><span>&bull;</span>
+                <span>Abernathy</span><span>&bull;</span>
+                <span>Silverton</span><span>&bull;</span>
+                <span>Quitaque</span><span>&bull;</span>
+                <span>Littlefield</span><span>&bull;</span>
+                <span>Olton</span><span>&bull;</span>
+                <span>Rocky Ford</span><span>&bull;</span>
+                <span>Earth</span><span>&bull;</span>
+                <span>Sudan</span><span>&bull;</span>
+                <span>Stratford</span><span>&bull;</span>
+                <span>Channing</span><span>&bull;</span>
+                <span>Jayton</span><span>&bull;</span>
+                <span>Snyder</span><span>&bull;</span>
+                <span>Miami</span><span>&bull;</span>
+                <span>Wildcat Bluff</span><span>&bull;</span>
+                <span>Gail</span><span>&bull;</span>
+                <span>Wayside</span><span>&bull;</span>
+                <span>Roaring Springs</span><span>&bull;</span>
+                <span>Childress</span><span>&bull;</span>
+                <span>Vega</span><span>&bull;</span>
+                <span>Pampa</span><span>&bull;</span>
+                <span>Pampa</span><span>&bull;</span>
+                <span>McLean</span><span>&bull;</span>
+                <span>Dimmitt</span><span>&bull;</span>
+                <span>Spearman</span><span>&bull;</span>
+                <span>Tahoka Lake Pasture</span><span>&bull;</span>
+                <span>Guthrie</span><span>&bull;</span>
+                <span>Anton</span><span>&bull;</span>
+                <span>Mackenzie Park</span><span>&bull;</span>
+                <span>Dumas</span><span>&bull;</span>
+                <span>New Home</span><span>&bull;</span>
+            </div>
+        </div>
+        <div class="basic-footer-content">
+    
+    <!-- New Flanked Branding Container -->
+    <div class="footer-branding-row">
+        <a href="https://example1.com" target="_blank" rel="noopener" class="footer-logo-link logo-left">
+            <img src="/img/qptsealwhite.png" alt="First Organization Logo" class="footer-logo-img">
+        </a>
+        
+        <div class="footer-site-title">
+            <a href="/">Quanah Parker Trail</a>
+        </div>
+        
+        <a href="https://example2.com" target="_blank" rel="noopener" class="footer-logo-link logo-right">
+            <img src="/img/tptr-logo-white.png" alt="Second Organization Logo" class="footer-logo-img">
+        </a>
+    </div>
+    <p>
+        <a href="/contact.html">Contact Us</a> |
+        <a href="#privacy">Privacy Policy</a>
+    </p>
+    <p>&copy; <span id="currentYear"></span> Quanah Parker Trail. All Rights Reserved.</p>
+    </footer>
+
+    
+    
+
+    <div class="modal-overlay" id="greeting-modal-overlay">
+      <div class="modal-content" id="greeting-modal-content" role="dialog" aria-labelledby="greeting-modal-title" aria-modal="true">
+        <button class="modal-close-btn" id="greeting-modal-close-btn" aria-label="Close greeting message">&times;</button>
+        <img src="/img/arrow-logo.png"
+             alt="Quanah Parker Trail Arrow graphic"
+             class="modal-greeting-image">
+        <h2 id="greeting-modal-title">Welcome to the Quanah Parker Trail!</h2>
+        <p>
+          Explore the historical arrow markers commemorating Quanah Parker and the Comanche people across the Texas Plains Trail Region. Use the map on the homepage or navigate via the menu to learn more about this effort.
+        </p>
+      </div>
+    </div>
+
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.js"></script>
+
+    
+    <script>
+      window.siteBasePath = "/";
+      // console.log('Site Base Path for JS:', window.siteBasePath); // For debugging
+    </script>
+
+    
+    <script src="/js/greeting-modal.js"></script>
+    <script src="/js/mobile-menu.js"></script>
+    
+    
+    <script src="/js/collapsible-toc.js"></script>
+    <script src="/js/footer-scripts.js"></script>
+
+</body>
+</html>

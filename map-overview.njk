@@ -1,0 +1,203 @@
+---
+layout: layouts/base.njk
+title: "Overview Map - Quanah Parker Trail"
+permalink: /map.html # This will create the page at yoursite.com/map/
+# description: "Explore all Quanah Parker Trail arrows and highlighted counties on this interactive map." # Optional
+# tags: # Optional, for collections
+#   - mainNav 
+---
+<div id="overview-map"></div>
+{# ... (rest of your page content) ... #}
+
+<script>
+    // Pass data from Eleventy to JavaScript
+    // Assumes _data/plainstrailcounties.json provides 'plainstrailcounties' (a FeatureCollection object)
+    // Assumes _data/arrows.json provides 'arrows' (an array of arrow objects)
+
+    const allCountyFeatures = {{ plainstrailcounties.features | jsonify | safe if plainstrailcounties and plainstrailcounties.features else '[]' }};
+    const allArrowData = {{ arrows | jsonify | safe if arrows else '[]' }};
+
+    // Base URLs for constructing links (adjust if your structure is different)
+    // These are used if your JSON data only contains slugs/IDs rather than full pre-built permalinks.
+    const baseCountyPageUrl = "{{ '/' | url }}"; // e.g., results in / for link like /dallam.html
+    const baseArrowDetailPageUrl = "{{ '/arrows/' | url }}"; // e.g., results in /arrows/ for link like /arrows/1.html
+</script>
+{# (Nunjucks data prep from Step 1 should be right above this) #}
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof L === 'undefined') {
+        console.error('Leaflet library is not loaded!');
+        return;
+    }
+
+    const mapContainer = document.getElementById('overview-map');
+    if (!mapContainer) {
+        console.error('Map container #overview-map not found!');
+        return;
+    }
+
+    // Data from Nunjucks (defined in the script block above this one)
+    // const allCountyFeatures = ...
+    // const allArrowData = ...
+    // const baseCountyPageUrl = ...
+    // const baseArrowDetailPageUrl = ...
+
+    const map = L.map(mapContainer, {
+        gestureHandling: true
+    }).setView([34.8, -100.5], 6.5); // Centered on the general TX Panhandle/Plains Trail region
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Data CC-BY-SA'
+    }).addTo(map);
+
+    const countyLayerGroup = L.featureGroup().addTo(map);
+    const arrowMarkersLayerGroup = L.featureGroup().addTo(map); // Or use L.markerClusterGroup()
+
+    // --- 1. Define Custom Arrow Icon ---
+    const arrowIcon = L.icon({
+        iconUrl: '{{ "/img/arrow-logo.png" | url }}', // Ensure Eleventy processes this path
+        shadowUrl: '{{ "/img/arrow-logo-shadow.png" | url }}',
+        iconSize: [30, 50],
+        shadowSize: [55, 45],
+        iconAnchor: [25, 50],
+        shadowAnchor: [50, 45],
+        popupAnchor: [0, -45]
+    });
+
+    // --- 2. Process and Display County Polygons ---
+    if (allCountyFeatures && allCountyFeatures.length > 0) {
+        console.log(`JS: Processing ${allCountyFeatures.length} county features...`);
+        const countyGeoJsonLayer = L.geoJSON(allCountyFeatures, {
+            style: function (feature) {
+                // Default style for all counties on the overview map
+                return {
+                    color: "#004E89", 
+                    weight: 1.5,
+                    opacity: 0.5,
+                    fillColor: "#004E89", 
+                    fillOpacity: 0.35
+                };
+            },
+            onEachFeature: function (feature, layer) {
+                let popupContent = '';
+                if (feature.properties) {
+                    const countyDisplayName = feature.properties.namelsad || feature.properties.name || "Unnamed County";
+                    popupContent += `<div class="qpt-popup-title">${String(countyDisplayName).replace(/[`$]/g, '')}</div>`;
+                    popupContent += `<div class="qpt-popup-details">`;
+
+                    // Example: Link to a county page if you have them and can construct the URL
+                    // This assumes 'name' property is like "Dallam", "Armstrong" and pages are /dallam.html etc.
+                    if (feature.properties.name) {
+                        const countySlug = String(feature.properties.name).toLowerCase().replace(/ /g, "-"); // Basic slugify
+                        const countyPageUrl = `${baseCountyPageUrl}${countySlug}.html`; // Construct URL
+                        popupContent += `<p><a href="${countyPageUrl}" class="qpt-popup-link">View County Details</a></p>`;
+                    }
+                    // You can add more properties from feature.properties to the popup
+                    if (feature.properties.description) { // If you add a description to your GeoJSON
+                        popupContent += `<p>${String(feature.properties.description).replace(/[`$]/g, '')}</p>`;
+                    }
+                    popupContent += `</div>`;
+                }
+                layer.bindPopup(popupContent);
+                countyLayerGroup.addLayer(layer); // Add to group
+            }
+        });
+        console.log("JS: County GeoJSON layer created.");
+    } else {
+        console.warn("JS: No county features to display or 'allCountyFeatures' is empty.");
+    }
+
+    // --- 3. Process and Display Arrow Markers ---
+    if (allArrowData && allArrowData.length > 0) {
+        console.log(`JS: Processing ${allArrowData.length} arrow markers...`);
+        allArrowData.forEach(function(arrow) {
+            const lat = parseFloat(arrow.lat);
+            const lon = parseFloat(arrow.lon); // Or arrow.lng if your data uses that
+
+            if (!isNaN(lat) && !isNaN(lon)) {
+                const marker = L.marker([lat, lon], { icon: arrowIcon });
+                let popupHtml = '';
+                try {
+                    let title = `Arrow ${arrow.arrowNumber || 'N/A'}: ${String(arrow.arrowName || 'Quanah Parker Trail Arrow').replace(/[`$]/g, '')}`;
+                    popupHtml = `<div class="qpt-popup-title">${title}</div>`;
+                    popupHtml += `<div class="qpt-popup-details">`;
+
+                    if (arrow.countyName) {
+                        popupHtml += `<p><strong>County:</strong> ${String(arrow.countyName).replace(/[`$]/g, '')}</p>`;
+                    }
+                    if (arrow.location && String(arrow.location).trim() !== '') {
+                         popupHtml += `<p><strong>Location:</strong> ${String(arrow.location).replace(/[`$]/g, '')}</p>`;
+                    }
+                    if (arrow.address && String(arrow.address).trim() !== '') {
+                        popupHtml += `<p><strong>Address:</strong> ${String(arrow.address).replace(/[`$]/g, '')}</p>`;
+                    }
+                    if (arrow.dateInstalled && String(arrow.dateInstalled).toLowerCase() !== 'none' && String(arrow.dateInstalled).trim() !== '') {
+                        popupHtml += `<p><strong>Installed:</strong> ${String(arrow.dateInstalled).replace(/[`$]/g, '')}</p>`;
+                    }
+                    if (arrow.dateDedicated && String(arrow.dateDedicated).toLowerCase() !== 'none' && String(arrow.dateDedicated).trim() !== '') {
+                        popupHtml += `<p><strong>Dedicated:</strong> ${String(arrow.dateDedicated).replace(/[`$]/g, '')}</p>`;
+                    }
+                    if (arrow.markerText && String(arrow.markerText).toLowerCase() !== 'none' && String(arrow.markerText).trim() !== '') {
+                        const formattedMarkerText = String(arrow.markerText).replace(/[`$]/g, '').replace(/\n/g, '<br>');
+                        popupHtml += `<p><strong>Marker Text:</strong><br>${formattedMarkerText}</p>`;
+                    }
+                    
+                    let linksHtml = '';
+                    // Construct arrow detail page URL. Assumes arrow.arrowNumber is available.
+                    // And your arrow pages are like /arrows/1.html, /arrows/23.html etc.
+                    if (arrow.arrowNumber) {
+                        const arrowDetailPageUrl = `${baseArrowDetailPageUrl}${arrow.arrowNumber}.html`;
+                        linksHtml += `<a href="${arrowDetailPageUrl}" class="qpt-popup-link">More Details</a>`;
+                    }
+
+                    if (!isNaN(lat) && !isNaN(lon)) {
+                        if(linksHtml !== '') linksHtml += '<br style="margin-bottom: 5px;">';
+                        linksHtml += `<a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank" rel="noopener noreferrer" class="qpt-popup-link">Navigate</a>`;
+                    }
+                    if(linksHtml !== '') popupHtml += `<p style="margin-top:10px;">${linksHtml}</p>`;
+                    
+                    popupHtml += `</div>`;
+                    marker.bindPopup(popupHtml);
+                    arrowMarkersLayerGroup.addLayer(marker); // Add to group
+
+                } catch (e) {
+                    console.error("JS: Error creating popup for arrow:", arrow, "Error:", e);
+                    marker.bindPopup(`Error in popup for Arrow ${arrow.arrowNumber || 'N/A'}.`);
+                    arrowMarkersLayerGroup.addLayer(marker); // Still add marker even if popup has error
+                }
+            } else {
+                console.warn("JS: Invalid lat/lon for an arrow marker:", arrow);
+            }
+        });
+        console.log("JS: Arrow markers processed.");
+    } else {
+        console.warn("JS: No arrow data to display or 'allArrowData' is empty.");
+    }
+
+    // --- 4. Fit Map to Bounds & Optional Layer Control ---
+    const allFeaturesGroup = L.featureGroup([...countyLayerGroup.getLayers(), ...arrowMarkersLayerGroup.getLayers()]);
+    if (allFeaturesGroup.getLayers().length > 0) {
+        map.fitBounds(allFeaturesGroup.getBounds().pad(0.05)); // Add a little padding
+        console.log("JS: Map bounds fitted to all features.");
+    } else {
+        console.log("JS: No features to fit map bounds to. Using default view.");
+    }
+
+    // Optional: Layer Control
+    const baseLayers = {
+        "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png') // Default one
+    };
+    const overlayMaps = {
+        "Counties": countyLayerGroup,
+        "Arrow Markers": arrowMarkersLayerGroup
+    };
+    if (countyLayerGroup.getLayers().length > 0 || arrowMarkersLayerGroup.getLayers().length > 0) {
+        L.control.layers(null, overlayMaps, { collapsed: false }).addTo(map); // Add only overlays if just one base layer
+    }
+    
+    map.whenReady(function() { map.invalidateSize(); });
+    window.addEventListener('load', function() { if (map && typeof map.invalidateSize === 'function') { map.invalidateSize(); }});
+});
+</script>

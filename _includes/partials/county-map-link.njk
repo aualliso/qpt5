@@ -1,0 +1,22 @@
+{# File: _includes/partials/county-map-link.njk #}
+{# Expects 'countyName' to be available #}
+{% set currentCountySlug = countyName %} {# Make sure 'slug' filter works #}
+
+{# Removed the <a> wrapper around this div #}
+<div class="county-map-overview-link-content">
+  <h4 class="mini-map-title">Texas Plains Trail Region Map</h4> {# Optional Title #}
+  <div class="county-map-overview-svg-container">
+    {# Include the SVG. Ensure paths have IDs like id="lubbock" #}
+    {% include "../svg/texas-overview-map.svg" %}
+  </div>
+  <span class="county-map-overview-text">Click a county to view arrows</span> {# Informative text #}
+
+  {# Inline style still highlights the *current* page's county #}
+  <style>
+    #{{ currentCountySlug }} {
+      fill: #A92323 !important; /* Highlight color */
+      stroke: #FFFFFF !important;
+      stroke-width: 1.0px !important;
+    }
+  </style>
+</div>

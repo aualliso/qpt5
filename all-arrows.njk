@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: "Quanah Parker Trail Arrows - Complete List"
+permalink: /list/ 
+# You could also use /all-arrows.html or similar
+tags:
+  - internalPage # Optional: for your own organization
+---
+{# Content for arrows-manifest.njk, after the front matter --- #}
+
+<article class="arrow-manifest-container">
+  <h1>{{ title }}</h1>
+  <p>This page provides a complete list of the Quanah Parker Trail arrow markers. For a comprehensive map of all arrows, please click <a href="{{ '/map.html' | url }}">here.</a></p>
+
+  {% if arrows and arrows.length > 0 %}
+    <table class="arrow-manifest-table">
+      <thead>
+        <tr>
+          <th>Arrow #</th>
+          <th>Name / Location</th>
+          <th>County</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for arrow in arrows | sort(false, false, 'arrowNumber') %} {# Sort by arrowNumber #}
+          <tr>
+            <td>{{ arrow.arrowNumber }}</td>
+            <td>{{ arrow.arrowName | default("N/A") }}</td>
+            <td>{{ arrow.countyName | default("N/A") }}</td>
+            <td>
+              <a href="{{ ('/arrows/' + arrow.arrowNumber + '.html') | url }}">
+                Details
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No arrow data is currently available.</p>
+  {% endif %}
+</article>

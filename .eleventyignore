@@ -1,0 +1,11 @@
+# Output directory - Eleventy shouldn't read from here
+_site/
+
+# Node dependencies - Eleventy shouldn't process these
+node_modules/
+
+# Git directory (if using git)
+.git/
+
+# Add any other specific files or folders you want Eleventy to ignore
+# Example: *.log
