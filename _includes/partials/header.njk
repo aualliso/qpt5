@@ -18,7 +18,6 @@
         {# --- End Hamburger Button --- #}
         <nav class="main-nav" id="main-navigation">
             <ul>
-                <li><a href="{{ '/' | url }}">Home</a></li>
                 {# --- Corrected Links for Homepage Sections --- #}
                 {# Apply url filter to the root path '/' then add the hash #}
                 {# IMPORTANT: Replace #arrows-section etc. with your ACTUAL section IDs #}
@@ -28,6 +27,7 @@
                 {# --- Corrected Link for Contact Page --- #}
                 {# Make path root-relative and add url filter #}
                 <li><a href="{{ '/map.html' | url }}">Map</a></li>
+                <li><a href="{{ '/list/' | url }}">List</a></li>
             </ul>
         </nav>
     </div>
