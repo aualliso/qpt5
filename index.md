@@ -51,7 +51,7 @@ title: Home
         {# --- Column 1: Image --- #}
         <div class="about-image-wrap">
             {# Uncommented and moved image - Apply url filter #}
-            <img src="{{ '/img/Smith1.jpg' | url }}" alt="Charles Smith, Arrow Maker" class="about-section-image">
+            <img src="{{ '/img/smith1.jpg' | url }}" alt="Charles Smith, Arrow Maker" class="about-section-image">
         </div>
         {# --- Column 2: Text Content --- #}
         <div class="about-text-wrap">
