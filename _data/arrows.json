@@ -1629,9 +1629,33 @@
     "dateDedicated": "None",
     "address": "",
     "sponsors": "",
-    "mainImage": "",
-    "mainImageAlt": "",
-    "galleryImages": [],
+    "mainImage": "/img/arrows/66/arrow66-5.png",
+    "mainImageAlt": "Photo Credit: Kathy Allen",
+    "galleryImages": [{
+        "src": "/img/arrows/66/arrow66-1.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/66/arrow66-2.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/66/arrow66-3.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/66/arrow66-4.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/66/arrow66-5.png",
+        "alt": "Photo Credit: Kathy Allen"
+      },
+      {
+        "src": "/img/arrows/66/arrow66-6.png",
+        "alt": "Photo Credit: Holle Humphries"
+      }
+    ],
     "geography_md": "",
     "history_md": "",
     "installation_details_md": "",
@@ -2224,9 +2248,9 @@
     ],
     "geography_md": "Anton is located in Hockley County, Texas, situated at a point where three tributaries historically converged to feed water into the Yellow House Draw. Key geographic features of the area include Yellow House Draw. The Yellow House Draw and the associated major water trail is a remnant of an ancient river that originally flowed from the northwest to the southeast across the Llano Estacado. It drains water off the Caprock into the canyonlands below to help form the Brazos River system. The draw cuts a gap of over thirty-five miles into the eastern edge of the Caprock escarpment. The river's headwaters rise in southeast Bailey County, specifically forming at the lakes of the Muleshoe National Wildlife Refuge and the Yellow House Ranch (which straddles Hockley and Lamb Counties). The watercourse likely expanded further northwest into New Mexico in the distant past. The canyon gets its name from Casas Amarillas (Yellow Houses) in Hockley and Lamb counties, where the draw curves east to expose a yellow cliff that resembles a distant city. At the dawn of history, the tributaries near Anton were fed by springs and seeps. However, these water sources evidently dried up around 1920 after the first wells were dug in the area, and the entirety of the draw is cultivated today. Despite this, if you look northwest across US 84 from Anton, you can still see a line of trees whose roots once sank into the damp soil, marking the historical edges of the draw.",
     "history_md": "Because it was a rare and vital source of water, the Yellow House Draw served as a major migration corridor and hunting ground for centuries. The draw functioned as a major 'water trail way' for wild game, such as bison and antelope, migrating in search of fresh grass. Consequently, nomadic hunters ranging from early Paleo-Indians to later Native American tribes followed this route to track the animals. The area's deep prehistoric roots were confirmed by the 1985 discovery of 'Ryan's cache' (named after the property owner). Located about thirteen miles southeast of Anton and just two and a half miles south of the draw, this collection of Plainview-type lithic artifacts was buried by a prehistoric hunter for safekeeping, with the intention of returning to refine the stones into spear points for hunting. Hundreds of years after the Paleo-Indians, Comanche tribes continued to utilize the site. They followed the wild game along the Yellow House Draw and are known to have convened at the main headwaters to the west, near today's Yellow House Ranch and Muleshoe National Wildlife Refuge.",
-    "installation_details_md": "'A Quanah Parker Trail Arrow arrived Friday, May 6, 2016 in Anton for installation inTriangle City Park just across the railroad tracks from U. S. 84. Near Anton is Yellow House Draw, an old Comanche trail route. The images on this page show both the installation and, interspersed in the sequence, scenes in and around Anton.'",
+    "installation_details_md": "'A Quanah Parker Trail Arrow arrived Friday, May 6, 2016 in Anton for installation in Triangle City Park just across the railroad tracks from U. S. 84. Near Anton is Yellow House Draw, an old Comanche trail route. The images on this page show both the installation and, interspersed in the sequence, scenes in and around Anton.'",
     "visitor_info_md": "There is no dedicated parking area, but the visitors can park on the side of the street to view the arrow.",
-    "bibliography_md": "*Gunnar Brune, 'Hockley County,' in Springs of Texas (Ft. Worth: Branch-Smith, Inc., 1981). pp. 230-231.\n*William T. Hartwell, 'The Ryan's Site Cache: Comparisons to Plainview,' in Plains Anthropologist, Vol. 40, No. 152, pp 165-184, on p. 165.\n*Charles G. Davis, 'Yellow House Draw,' Handbook of Texas Online, accessed May 18, 2026, https://www.tshaonline.org/handbook/entries/yellow-house-draw. -- Handbook of Texas."
+    "bibliography_md": "*Gunnar Brune, 'Hockley County,' in Springs of Texas (Ft. Worth: Branch-Smith, Inc., 1981). pp. 230-231.\n*William T. Hartwell, 'The Ryan's Site Cache: Comparisons to Plainview,' in Plains Anthropologist, Vol. 40, No. 152, pp 165-184, on p. 165.\n*Charles G. Davis, 'Yellow House Draw,' Handbook of Texas Online, accessed May 18, 2026, https://www.tshaonline.org/handbook/entries/yellow-house-draw."
   },
   {
     "lat": 33.5910245,
