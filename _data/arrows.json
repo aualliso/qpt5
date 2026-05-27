@@ -1669,17 +1669,54 @@
     "id": "arrow67",
     "arrowName": "Channing",
     "countyName": "Hartley",
-    "location": "",
+    "location": "XIT General Ranch Office in Channing",
     "markerText": "None",
     "dateInstalled": "July 26, 2013",
     "dateDedicated": "None",
-    "address": "",
+    "address": "500 Main Street | Channing, Texas 79018",
     "sponsors": "",
-    "mainImage": "",
-    "mainImageAlt": "",
-    "galleryImages": [],
-    "geography_md": "",
-    "history_md": "",
+    "mainImage": "/img/arrows/67/arrow67-6.png",
+    "mainImageAlt": "Photo Credit: Holle Humphries",
+    "galleryImages": [
+      {
+        "src": "/img/arrows/67/arrow67-1.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/67/arrow67-2.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/67/arrow67-3.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/67/arrow67-4.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/67/arrow67-5.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/67/arrow67-6.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/67/arrow67-7.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/67/arrow67-8.png",
+        "alt": "Photo Credit: Holle Humphries"
+      },
+      {
+        "src": "/img/arrows/67/arrow67-9.png",
+        "alt": "Photo Credit: Holle Humphries"
+      }
+    ],
+    "geography_md": "Situated in the southeastern corner of Hartley County in the northwestern Texas Panhandle, the landscape surrounding Channing sits at a high, wind-swept elevation of roughly 3,800 feet above sea level. This region defines the physical transition from the immense, dead-flat expanse of the Llano Estacado into the rolling, semiarid High Plains. Here, deep clay and sandy loam soils feed dense native shortgrass prairies that have historically anchored massive cattle ranching empires, most notably the legendary XIT Ranch. While the upland plains immediately surrounding the quiet county seat appear smoothly undulating, the geography is dynamically carved by a vital network of historical waterways, chiefly Rita Blanca Creek and Punta de Agua Creek.\n\nThese two primary drainages dictate the local topography, transforming the flat tableland into a rugged labyrinth of breaks, draws, and sharp arroyos as they cut paths toward the nearby Canadian River basin. Punta de Agua Creek (historically documented by early explorers as Major Long’s Creek) originates across the state line in New Mexico and flows southeastward across Hartley County. Passing just to the west and south of Channing, its broad, ordinarily dry sandy bed is lined with resilient native grasses, water-tolerant hardwoods, and occasional conifers. Though it remains dry for much of the year under the region's sparse eighteen inches of annual rainfall, Punta de Agua serves as a powerful conduit for sudden, heavy flash floods following torrential High Plains thunderstorms.\n\nJust east of Channing, Punta de Agua converges with Rita Blanca Creek, a major regional waterway that flows southward through the eastern half of the county. Rita Blanca further scars the prairie landscape, carving out a pronounced valley that breaks the monotony of the surrounding plains. Together, these seasonal creek systems carry the localized runoff of the northern Panhandle into the Canadian River breaks just over the Oldham County line. The presence of these creeks is precisely why this specific pocket of Hartley County feels distinct from the unyielding flatness further south; they introduce a rugged, rolling relief of dramatic draws, seasonal pools, and rough breaks to an otherwise infinite horizon of grass and wind.",
+    "history_md": "Before it became the domain of the cattle baron, the rugged plains and deep draws surrounding Channing sat at the geographic heart of Comancheria, the vast, fiercely defended empire of the Comanche. While the high, windswept grasslands of present-day Hartley County offered prime hunting grounds, the true strategic value of this specific landscape lay in its hydrology. Long before the XIT Ranch fenced the open range, the deep valleys of Rita Blanca and Punta de Agua creeks served as vital, life-sustaining corridors in an otherwise arid expanse.\n\nFor the Comanche and other Plains tribes, Rita Blanca Creek was far more than a seasonal water source; it was a natural highway through the Llano Estacado. When raiding parties moved north to strike the heavily traveled Santa Fe Trail, which cut across the nearby Oklahoma Panhandle, or when they retreated south with captured horses and goods, Rita Blanca Creek provided a protected, easily navigable route. Its braided channels and cutbank draws offered reliable water, forage for horses, and natural concealment from the open plains. This deep indigenous history remains etched into the geography around Channing, where the very same creek breaks that later sheltered pioneer cattle herds once acted as the hidden staging grounds and thoroughfares for the master horsemen of the Southern Plains.",
     "installation_details_md": "",
     "visitor_info_md": "",
     "bibliography_md": ""

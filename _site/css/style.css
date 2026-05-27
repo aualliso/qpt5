@@ -964,9 +964,10 @@ hr.marker-divider {
 
     .footer-branding-row { 
         display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        gap: 1rem; 
+        flex-direction: row; /* Forces items to sit side-by-side */
+        justify-content: center; /* Centers them horizontally in the row */
+        align-items: center; /* Centers them vertically against each other */
+        gap: 1.5rem; /* Adds a nice gap between the two logos */
         inline-size: 100%; 
     }
 
@@ -1097,7 +1098,7 @@ hr.marker-divider {
     .image-gallery img { inline-size: calc(100% - 10px); max-inline-size: none; }
     
     .about-flex-container { flex-direction: column; align-items: center; }
-    .about-flex-container .about-image-wrap { flex-basis: auto; inline-size: 40%; max-inline-size: 200px; margin-block: -140px; }
+    .about-flex-container .about-image-wrap { flex-basis: auto; inline-size: 40%; max-inline-size: 200px; margin-block: -80px; }
     .about-flex-container .about-text-wrap h2, .about-flex-container .about-text-wrap p, .about-flex-container .about-text-wrap p[style*="text-align: center"] { text-align: center; }
     
     .map-fab { inset-block-end: 25px; inset-inline-end: 45px; }
