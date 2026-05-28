@@ -63,6 +63,13 @@ title: "{{ arrow.arrowName }} - Arrow #{{ arrow.arrowNumber }} - Quanah Parker T
             {{ arrow.history_md | markdownify | safe }}
         </section>
         {% endif %}
+    {# Section 7: Bibliography #}
+        {% if arrow.bibliography_md %}
+        <section id="bibliography">
+            <h2>Bibliography</h2>
+            {{ arrow.bibliography_md | markdownify | safe }}
+        </section>
+        {% endif %}
     {# Other sections will be added below here #}
     {# Section 4: Installation Details #}
         <section id="installation">
@@ -80,7 +87,7 @@ title: "{{ arrow.arrowName }} - Arrow #{{ arrow.arrowNumber }} - Quanah Parker T
         {% if arrow.galleryImages and arrow.galleryImages.length > 0 %}
         <section id="photo-gallery">
             <h2>Photo Gallery</h2>
-            <p>Images related to the {{ arrow.arrowName }} Quanah Parker Arrow</p>
+            <p>Images related to the Quanah Parker Trail arrow at {{ arrow.arrowName }} </p>
             <div class="horizontal-scroll-gallery">
                 {% for image in arrow.galleryImages %}
                 {# Using robust conditional for href #}
@@ -91,18 +98,11 @@ title: "{{ arrow.arrowName }} - Arrow #{{ arrow.arrowNumber }} - Quanah Parker T
             </div>
         </section>
         {% endif %}
-    {# Section 6: Visitor Information / Nearby #}
+    {# Section 6: Visitor Information and Resources / Nearby #}
     {% if arrow.visitor_info_md %}
         <section id="visitor-info">
-            <h2>Visitor Information</h2>
+            <h2>Visitor Information and Resources</h2>
             {{ arrow.visitor_info_md | markdownify | safe }}
         </section>
     {% endif %}
-    {# Section 7: Bibliography #}
-        {% if arrow.bibliography_md %}
-        <section id="bibliography">
-            <h2>Bibliography</h2>
-            {{ arrow.bibliography_md | markdownify | safe }}
-        </section>
-        {% endif %}
 </div>
