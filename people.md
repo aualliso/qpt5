@@ -47,6 +47,20 @@ permalink: /people.html
            </div> {# End about-text-wrap #}
     </div> {# End about-flex-container #}
 </section>
+<section id="about-section" class="content-section alt-background"> {# MODIFIED ID for uniqueness #}
+    <div class="text-content-container"> {# Wrapper to control text width #}
+        <h2>Quanah Parker Day 2026</h2>
+        <p>
+            Quanah Parker Day Text1
+        </p>
+        <p>
+            Quanah Parker Day Text2
+        </p>
+        <p style="text-align: center;">
+           <a href="/" class="button navigation-button">More Information</a>
+        </p>
+    </div>
+</section>
 <section id="about-section" class="content-section alt-background">
     <h2>Person 3</h2>
     <div class="text-content-container">

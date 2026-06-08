@@ -22,6 +22,14 @@ title: "{{ arrow.arrowName }} - Arrow #{{ arrow.arrowNumber }} - Quanah Parker T
     </nav>
 </header>
 
+{% if arrow.inprogress_md %}
+<div class="inprogressbox">
+    <section id="inprogress">
+      <h2>The content of this page is being developed</h2>
+    </section>
+</div>
+{% endif %}
+
 <div class="county-content">
     {# Section 1: Arrow Overview (Info + Main Image + Map) #}
     <section id="arrow-overview">

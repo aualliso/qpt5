@@ -45,7 +45,7 @@ title: Home
         </p>
     </div> {# End text-content-container #}
 </section>
-<section id="about-section" class="content-section alt-background2"> {# MODIFIED ID for uniqueness #}
+<section id="about-section2" class="content-section alt-background2"> {# MODIFIED ID for uniqueness #}
     <div class="text-content-container"> {# Wrapper to control text width #}
         <h2>Quanah Parker Day 2026</h2>
         <p>

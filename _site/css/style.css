@@ -289,7 +289,7 @@ body.page-home .site-main-header {
     background-color: var(--color-bg-tan);
     padding: 30px 20px;
     text-align: center;
-    max-inline-size: 900px;
+    max-inline-size: 868px;
     border-radius: 5px;
     box-sizing: border-box;
     margin: 0 auto 40px auto;
@@ -322,6 +322,23 @@ body.page-home .site-main-header {
         font-size: 1.1em;
         line-height: 1.6;
         margin-block-end: -30px;
+    }
+}
+
+.inprogressbox {
+    background-color: var(--color-accent-gold);
+    padding: 10px 10px;
+    text-align: center;
+    max-inline-size: 868px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0 auto 40px auto;
+    
+    h2 {
+        font-family: 'Montserrat', serif;
+        font-size: clamp(1.0em, 3vw + 0.5em, 1.5em);
+        color: var(--color-text-main);
+        padding-block-end: 5px;
     }
 }
 
@@ -370,7 +387,7 @@ body.page-home .site-main-header {
     background-color: var(--color-bg-tan);
     padding: 15px 20px;
     border-radius: 5px;
-    max-inline-size: 900px;
+    max-inline-size: 868px;
     box-sizing: border-box;
 
     h3 {
@@ -426,9 +443,45 @@ section[id], article[id] { scroll-margin-top: 100px; }
 .text-content-container2 { max-inline-size: 850px; margin-inline: auto; }
 
 #about-section, #about-section2 {
+
+    background-color: var(--color-bg-tan);
+    padding: 10px 10px;
+    text-align: center;
+    max-inline-size: 868px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0 auto 40px auto;
+    
+
     h2 {
         text-align: center;
-        font-size: 2.2em;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-family: 'Montserrat', serif;
+        color: var(--color-text-main);
+        margin-block-end: 30px;
+    }
+    p {
+        font-size: 1.1em;
+        color: var(--color-text-main);
+        line-height: 1.7;
+        margin-block-end: 1.5em;
+    }
+}
+
+#about-section2 {
+
+    background-color: var(--color-white);
+    padding: 10px 10px;
+    text-align: center;
+    max-inline-size: 868px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0 auto 40px auto;
+    
+
+    h2 {
+        text-align: center;
+        font-size: clamp(1.5rem, 3vw, 2rem);
         font-family: 'Montserrat', serif;
         color: var(--color-text-main);
         margin-block-end: 30px;
@@ -539,12 +592,28 @@ hr.marker-divider {
 }
 
 .arrow-manifest-container {
-    background-color: var(--color-bg-tan);
-    padding: 10px 15px;
-    margin-inline: auto;
+    background-color: var(--color-white);
+    padding: 10px 10px;
+    text-align: center;
+    max-inline-size: 868px;
     border-radius: 5px;
-    max-inline-size: 900px;
     box-sizing: border-box;
+    margin: 0 auto 40px auto;
+
+    h1 { 
+        text-align: center; 
+        font-size: clamp(1.5rem, 3vw, 2rem); 
+        font-family: 'Montserrat', serif; 
+        color: var(--color-text-main); 
+        margin-block-end: 30px; 
+    }
+
+    p { 
+        font-size: 1.0em; 
+        color: var(--color-text-main); 
+        line-height: 1.0; 
+        margin-block-end: 1.0em; 
+    }
 
     .arrow-manifest-table { 
         inline-size: 100%; 
@@ -758,7 +827,7 @@ hr.marker-divider {
     text-align: center;
 
     h2 {
-        font-size: clamp(1.5em, 4vw, 2.2em);
+        font-size: clamp(1.0em, 4vw, 2.0em);
         font-family: 'Montserrat', serif;
         color: var(--color-text-main);
         margin-block-end: 15px;
@@ -1030,10 +1099,18 @@ hr.marker-divider {
     }
 }
 
+
 /* =========================================
    Responsive Design Breakpoints
    ========================================= */
 /* Note: Thanks to fluid typography (clamp), media queries for font-sizes have been removed. */
+@media (max-width: 900px) {
+    .county-header { max-width:868px; margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; text-align: center; }
+    .inprogressbox { max-width:868px; margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; text-align: center; font-size: clamp(0.7em, 3vw + 0.5em, 0.525em)}
+    #about-section { max-width: 900px; margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; }
+}
+
+
 
 @media (max-width: 868px) {
     .panel-container { padding-block-start: 100px; gap: 15px; }
@@ -1063,6 +1140,9 @@ hr.marker-divider {
         transition: transform 0.4s ease-out, opacity 0.4s ease-out; 
         pointer-events: none; 
     }
+
+    .county-header { max-width:868px; margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; text-align: center; }
+    .inprogressbox { max-width:868px; margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; text-align: center; font-size: clamp(0.7em, 3vw + 0.5em, 0.525em)}
     
     .main-nav.is-open ul { opacity: 1; transform: translateY(0); pointer-events: auto; padding-block: 15px 10px; margin-block-start: 2px; }
     .main-nav li { inline-size: 100%; text-align: center; }
@@ -1095,6 +1175,7 @@ hr.marker-divider {
     .site-footer .scrolling-banner-track { animation-duration: 150s; span { margin-inline-end: 15px; } }
     
     .county-header { margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; text-align: center; }
+    .inprogressbox { margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; text-align: center; font-size: clamp(0.7em, 3vw + 0.5em, 0.525em)}
     .image-gallery img { inline-size: calc(100% - 10px); max-inline-size: none; }
     
     .about-flex-container { flex-direction: column; align-items: center; }
