@@ -23,7 +23,16 @@ permalink: /arrows.html
               Central to the trail's history is the active involvement of the Parker family. Descendants such as Don Parker and Ardith Parker-Leming have frequently attended dedication ceremonies to perform traditional blessings, often utilizing cedar smoke. The project is viewed by participants as a vehicle for cultural exchange and reconciliation; during one dedication, Ardith Parker-Leming remarked that the events demonstrate that "two cultures can co-exist". Ultimately, the trail serves to place "markers in the earth" for a legacy that was nearly forgotten, acknowledging the region's history as the "Comancheria."
             </p>
             {# Keep button paragraph inside text wrap #}
-    </div> {# End about-flex-container #}
+    </div>
+</section>
+<section id="about-section2" class="content-section alt-background2">
+    <h2>The Granite Markers</h2>
+    <div class="text-content-container">
+             <p>
+              Each arrow is accompanied by a granite marker to tell the reasoning why that location serves to commemorate the Quanah Parker Trail. Supplied by the <a href="https://wallacemonuments.com/" target="_blank" rel="noopener noreferrer">Wallace Monument Company</a> in Clarendon, Texas, these markers were designed not only to tell a story, but also to stand the test of time as a reminder of the enduring influence of the Comanche in the region.
+            </p>
+            {# Keep button paragraph inside text wrap #}
+    </div>
 </section>
 <section id="about-section" class="content-section alt-background">
 <h2>Photo Gallery</h2>
@@ -42,7 +51,6 @@ permalink: /arrows.html
     </a>
     <a href="/img/aboutarrows/smith-5.jpg" target="_blank" rel="noopener noreferrer" title="">
       <img src="/img/aboutarrows/smith-5.jpg" alt="" loading="lazy">
-    </a>
-    
+    </a> 
 </div>
 </section>
