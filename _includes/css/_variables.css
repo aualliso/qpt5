@@ -1091,7 +1091,8 @@ hr.marker-divider {
 @media (max-width: 900px) {
     .county-header { max-width:868px; margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; text-align: center; }
     .inprogressbox { max-width:868px; margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; text-align: center; font-size: clamp(0.7em, 3vw + 0.5em, 0.525em)}
-    #about-section { max-width: 900px; margin: 0 20px 30px 20px; padding: 25px 15px; border-radius: 5px; box-sizing: border-box; }
+    #about-section {  inline-size: 92%; max-inline-size: 1400px; border: 1px solid var(--color-bg-tan); box-sizing: border-box; box-shadow: 1px 3px 5px rgb(from var(--color-black) r g b); border-radius: 5px; }
+    #about-section2 { inline-size: 92%; max-inline-size: 1400px; border: 1px solid var(--color-bg-tan); box-sizing: border-box; box-shadow: 1px 3px 5px rgb(from var(--color-black) r g b); border-radius: 5px; }
 }
 
 

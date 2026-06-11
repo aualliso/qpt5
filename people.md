@@ -50,22 +50,18 @@ permalink: /people.html
 <section id="about-section" class="content-section alt-background"> {# MODIFIED ID for uniqueness #}
     <div class="text-content-container about-flex-container">
         {# --- Column 1: Image --- #}
-        <div class="about-image-wrap">
-            {# Uncommented and moved image - Apply url filter #}
-            <img src="{{ '/img/tptr-logo-blue.png' | url }}" alt="Charles Smith, Arrow Maker" class="about-section-image">
-        </div>
         {# --- Column 2: Text Content --- #}
         <div class="about-text-wrap">
             <h2>Texas Plains Trail Region</h2>
-            <p>
-            </p>
-            <p>
-            </p>
             {# Keep button paragraph inside text wrap #}
             <p style="text-align: center;"> {# Button alignment handled by CSS below #}
                <a href="https://texastimetravel.com/blog/quanah-parker-trail-follow-the-arrows-into-history/" target="_blank" rel="noopener noreferrer" class="button navigation-button">Texas Plains Trail Region</a>
             </p>
-           </div> {# End about-text-wrap #}
+        </div> {# End about-text-wrap #}
+        <div class="about-image-wrap">
+            {# Uncommented and moved image - Apply url filter #}
+            <img src="{{ '/img/tptr-logo-blue.png' | url }}" alt="Charles Smith, Arrow Maker" class="about-section-image">
+        </div>
     </div> {# End about-flex-container #}
 </section>
 <section id="about-section" class="content-section alt-background">
